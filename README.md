@@ -111,3 +111,10 @@ limitations under the License.
 [prismic-sign-up]: https://prismic.io/dashboard/signup
 [sveltekit]: https://kit.svelte.dev/
 [live-demo]: https://sveltekit-starter-prismic-minimal.vercel.app/
+
+
+-----
+has to be pinned to
+@prismicio/client@7.17.3
+@prismicio/svelte@2.0.0
+
