@@ -4,7 +4,60 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PickContentRelationshipFieldData<
+	TRelationship extends
+		| prismic.CustomTypeModelFetchCustomTypeLevel1
+		| prismic.CustomTypeModelFetchCustomTypeLevel2
+		| prismic.CustomTypeModelFetchGroupLevel1
+		| prismic.CustomTypeModelFetchGroupLevel2,
+	TData extends Record<
+		string,
+		prismic.AnyRegularField | prismic.GroupField | prismic.NestedGroupField | prismic.SliceZone
+	>,
+	TLang extends string
+> =
+	// Content relationship fields
+	{
+		[TSubRelationship in Extract<
+			TRelationship['fields'][number],
+			prismic.CustomTypeModelFetchContentRelationshipLevel1
+		> as TSubRelationship['id']]: ContentRelationshipFieldWithData<
+			TSubRelationship['customtypes'],
+			TLang
+		>;
+	} & // Group
+	{
+		[TGroup in Extract<
+			TRelationship['fields'][number],
+			prismic.CustomTypeModelFetchGroupLevel1 | prismic.CustomTypeModelFetchGroupLevel2
+		> as TGroup['id']]: TData[TGroup['id']] extends prismic.GroupField<infer TGroupData>
+			? prismic.GroupField<PickContentRelationshipFieldData<TGroup, TGroupData, TLang>>
+			: never;
+	} & // Other fields
+	{
+		[TFieldKey in Extract<TRelationship['fields'][number], string>]: TFieldKey extends keyof TData
+			? TData[TFieldKey]
+			: never;
+	};
+
+type ContentRelationshipFieldWithData<
+	TCustomType extends
+		| readonly (prismic.CustomTypeModelFetchCustomTypeLevel1 | string)[]
+		| readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
+	TLang extends string = string
+> = {
+	[ID in Exclude<TCustomType[number], string>['id']]: prismic.ContentRelationshipField<
+		ID,
+		TLang,
+		PickContentRelationshipFieldData<
+			Extract<TCustomType[number], { id: ID }>,
+			Extract<prismic.Content.AllDocumentTypes, { type: ID }>['data'],
+			TLang
+		>
+	>;
+}[Exclude<TCustomType[number], string>['id']];
+
+type PageDocumentDataSlicesSlice = ContactFormSlice | HeroTextSlice | CardListSlice | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -13,13 +66,13 @@ interface PageDocumentData {
 	/**
 	 * Title field in *Page*
 	 *
-	 * - **Field Type**: Title
+	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.title
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
-	title: prismic.TitleField;
+	title: prismic.RichTextField;
 
 	/**
 	 * Slice Zone field in *Page*
@@ -28,17 +81,17 @@ interface PageDocumentData {
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.slices[]
 	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/field#slices
+	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
+	slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
 	 * Meta Title field in *Page*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: A title of the page used for social media and search engines
 	 * - **API ID Path**: page.meta_title
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
-	 */;
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
 	meta_title: prismic.KeyTextField;
 
 	/**
@@ -48,7 +101,7 @@ interface PageDocumentData {
 	 * - **Placeholder**: A brief summary of the page
 	 * - **API ID Path**: page.meta_description
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
 	 */
 	meta_description: prismic.KeyTextField;
 
@@ -59,7 +112,7 @@ interface PageDocumentData {
 	 * - **Placeholder**: *None*
 	 * - **API ID Path**: page.meta_image
 	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/field#image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	meta_image: prismic.ImageField<never>;
 }
@@ -69,7 +122,7 @@ interface PageDocumentData {
  *
  * - **API ID**: `page`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
@@ -82,6 +135,336 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 export type AllDocumentTypes = PageDocument;
 
 /**
+ * Item in *CardList → Default → Primary → Repeatable Zone*
+ */
+export interface CardListSliceDefaultPrimaryRepeatableZoneItem {
+	/**
+	 * Title field in *CardList → Default → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.repeatable_zone[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Description field in *CardList → Default → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.repeatable_zone[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Image field in *CardList → Default → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.repeatable_zone[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Name field in *CardList → Default → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.repeatable_zone[].name
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+}
+
+/**
+ * Item in *CardList → headerImage → Primary → Repeatable Zone*
+ */
+export interface CardListSliceHeaderImagePrimaryRepeatableZoneItem {
+	/**
+	 * Title field in *CardList → headerImage → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.repeatable_zone[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Description field in *CardList → headerImage → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.repeatable_zone[].description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Image field in *CardList → headerImage → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.repeatable_zone[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Name field in *CardList → headerImage → Primary → Repeatable Zone*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.repeatable_zone[].name
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	name: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CardList → Default → Primary*
+ */
+export interface CardListSliceDefaultPrimary {
+	/**
+	 * Heading field in *CardList → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Repeatable Zone field in *CardList → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.default.primary.repeatable_zone[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	repeatable_zone: prismic.GroupField<Simplify<CardListSliceDefaultPrimaryRepeatableZoneItem>>;
+}
+
+/**
+ * Default variation for CardList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CardListSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<CardListSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Primary content in *CardList → headerImage → Primary*
+ */
+export interface CardListSliceHeaderImagePrimary {
+	/**
+	 * Heading field in *CardList → headerImage → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * wide field in *CardList → headerImage → Primary*
+	 *
+	 * - **Field Type**: Boolean
+	 * - **Placeholder**: *None*
+	 * - **Default Value**: false
+	 * - **API ID Path**: card_list.headerImage.primary.wide
+	 * - **Documentation**: https://prismic.io/docs/fields/boolean
+	 */
+	wide: prismic.BooleanField;
+
+	/**
+	 * Repeatable Zone field in *CardList → headerImage → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: card_list.headerImage.primary.repeatable_zone[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	repeatable_zone: prismic.GroupField<Simplify<CardListSliceHeaderImagePrimaryRepeatableZoneItem>>;
+}
+
+/**
+ * headerImage variation for CardList Slice
+ *
+ * - **API ID**: `headerImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CardListSliceHeaderImage = prismic.SharedSliceVariation<
+	'headerImage',
+	Simplify<CardListSliceHeaderImagePrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *CardList*
+ */
+type CardListSliceVariation = CardListSliceDefault | CardListSliceHeaderImage;
+
+/**
+ * CardList Shared Slice
+ *
+ * - **API ID**: `card_list`
+ * - **Description**: CardList
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CardListSlice = prismic.SharedSlice<'card_list', CardListSliceVariation>;
+
+/**
+ * Primary content in *ContactForm → Default → Primary*
+ */
+export interface ContactFormSliceDefaultPrimary {
+	/**
+	 * Heading field in *ContactForm → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_form.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	heading: prismic.RichTextField;
+
+	/**
+	 * Description field in *ContactForm → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: contact_form.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ContactForm Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactFormSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ContactFormSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *ContactForm*
+ */
+type ContactFormSliceVariation = ContactFormSliceDefault;
+
+/**
+ * ContactForm Shared Slice
+ *
+ * - **API ID**: `contact_form`
+ * - **Description**: ContactForm
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ContactFormSlice = prismic.SharedSlice<'contact_form', ContactFormSliceVariation>;
+
+/**
+ * Item in *HeroText → Default → Primary → labels*
+ */
+export interface HeroTextSliceDefaultPrimaryLabelsItem {
+	/**
+	 * text field in *HeroText → Default → Primary → labels*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.labels[].text
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	text: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *HeroText → Default → Primary*
+ */
+export interface HeroTextSliceDefaultPrimary {
+	/**
+	 * Title field in *HeroText → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Subtitle field in *HeroText → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.subtitle
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	subtitle: prismic.RichTextField;
+
+	/**
+	 * Description field in *HeroText → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * labels field in *HeroText → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.labels[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	labels: prismic.GroupField<Simplify<HeroTextSliceDefaultPrimaryLabelsItem>>;
+}
+
+/**
+ * Default variation for HeroText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroTextSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroTextSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *HeroText*
+ */
+type HeroTextSliceVariation = HeroTextSliceDefault;
+
+/**
+ * HeroText Shared Slice
+ *
+ * - **API ID**: `hero_text`
+ * - **Description**: HeroText
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroTextSlice = prismic.SharedSlice<'hero_text', HeroTextSliceVariation>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -91,7 +474,7 @@ export interface RichTextSliceDefaultPrimary {
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: Lorem ipsum...
 	 * - **API ID Path**: rich_text.default.primary.content
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	content: prismic.RichTextField;
 }
@@ -101,7 +484,7 @@ export interface RichTextSliceDefaultPrimary {
  *
  * - **API ID**: `default`
  * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type RichTextSliceDefault = prismic.SharedSliceVariation<
 	'default',
@@ -119,7 +502,7 @@ type RichTextSliceVariation = RichTextSliceDefault;
  *
  * - **API ID**: `rich_text`
  * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
 
@@ -131,12 +514,40 @@ declare module '@prismicio/client' {
 		): prismic.Client<AllDocumentTypes>;
 	}
 
+	interface CreateWriteClient {
+		(
+			repositoryNameOrEndpoint: string,
+			options: prismic.WriteClientConfig
+		): prismic.WriteClient<AllDocumentTypes>;
+	}
+
+	interface CreateMigration {
+		(): prismic.Migration<AllDocumentTypes>;
+	}
+
 	namespace Content {
 		export type {
 			PageDocument,
 			PageDocumentData,
 			PageDocumentDataSlicesSlice,
 			AllDocumentTypes,
+			CardListSlice,
+			CardListSliceDefaultPrimaryRepeatableZoneItem,
+			CardListSliceDefaultPrimary,
+			CardListSliceHeaderImagePrimaryRepeatableZoneItem,
+			CardListSliceHeaderImagePrimary,
+			CardListSliceVariation,
+			CardListSliceDefault,
+			CardListSliceHeaderImage,
+			ContactFormSlice,
+			ContactFormSliceDefaultPrimary,
+			ContactFormSliceVariation,
+			ContactFormSliceDefault,
+			HeroTextSlice,
+			HeroTextSliceDefaultPrimaryLabelsItem,
+			HeroTextSliceDefaultPrimary,
+			HeroTextSliceVariation,
+			HeroTextSliceDefault,
 			RichTextSlice,
 			RichTextSliceDefaultPrimary,
 			RichTextSliceVariation,
