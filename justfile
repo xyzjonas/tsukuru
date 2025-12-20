@@ -6,3 +6,6 @@ check:
 
 slicemachine:
   npm run slicemachine
+
+build:
+  npm run build
