@@ -8,6 +8,6 @@ console.log('Removing preview routes for static build...');
 await rm('src/routes/api', { recursive: true, force: true });
 await rm('src/routes/slice-simulator', { recursive: true, force: true });
 await rm('src/routes/[[preview=preview]]', { recursive: true, force: true });
-await rename('src/-page.server.ts', 'src/+page.server.ts');
+await rename('src/routes/-page.server.ts', 'src/routes/+page.server.ts');
 console.log('Preview routes removed.');
 // }
