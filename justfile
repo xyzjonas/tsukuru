@@ -1,5 +1,5 @@
 dev:
-  npm run vite:dev
+  npm run nuxt:dev
 
 check:
   npm run check
@@ -9,3 +9,7 @@ slicemachine:
 
 build:
   npm run build
+
+[working-directory: 'tisknilepe3d']
+generate:
+  npx nuxt generate
