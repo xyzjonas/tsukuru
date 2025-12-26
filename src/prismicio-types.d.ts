@@ -435,6 +435,16 @@ export interface HeroTextSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	labels: prismic.GroupField<Simplify<HeroTextSliceDefaultPrimaryLabelsItem>>;
+
+	/**
+	 * background field in *HeroText → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_text.default.primary.background
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	background: prismic.ImageField<never>;
 }
 
 /**

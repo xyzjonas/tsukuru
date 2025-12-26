@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Content } from '@prismicio/client';
-	import { PrismicRichText, type SliceComponentProps } from '@prismicio/svelte';
+	import { PrismicImage, PrismicRichText, type SliceComponentProps } from '@prismicio/svelte';
 
 	type Props = SliceComponentProps<Content.HeroTextSlice>;
 
@@ -8,6 +8,9 @@
 </script>
 
 <section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+	<div class="image">
+		<PrismicImage field={slice.primary.background}></PrismicImage>
+	</div>
 	<PrismicRichText field={slice.primary.title} />
 	<PrismicRichText field={slice.primary.subtitle} />
 	<PrismicRichText field={slice.primary.description} />
@@ -23,6 +26,8 @@
 		align-items: center;
 		justify-items: left;
 		text-align: center;
+		position: relative;
+		background-color: transparent;
 	}
 
 	:global(h1) {
@@ -53,5 +58,21 @@
 		border-radius: 100%;
 		margin-right: 8px;
 		background-color: var(--gray-5);
+	}
+
+	.image {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	:global(.image img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
 	}
 </style>

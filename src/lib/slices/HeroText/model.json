@@ -54,6 +54,14 @@
               }
             }
           }
+        },
+        "background": {
+          "type": "Image",
+          "config": {
+            "label": "background",
+            "constraint": {},
+            "thumbnails": []
+          }
         }
       },
       "items": {}
