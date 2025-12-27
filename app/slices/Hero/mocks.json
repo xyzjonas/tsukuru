@@ -1,0 +1,67 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"linktext": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "chci nezávaznou poptávku"
+			},
+			"subtitle": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Reagujeme do 24 hodin"
+			},
+			"background": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1611117775350-ac3950990985?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHwzZCUyMHByaW50ZXJ8ZW58MHx8fHwxNzY2Nzc4MTE0fDA&ixlib=rb-4.1.0&q=85",
+				"alt": "black and blue audio mixer",
+				"origin": {
+					"id": "aCniNTiIFd8",
+					"url": "https://images.unsplash.com/photo-1611117775350-ac3950990985?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHwzZCUyMHByaW50ZXJ8ZW58MHx8fHwxNzY2Nzc4MTE0fDA&ixlib=rb-4.1.0&q=85",
+					"width": 6015,
+					"height": 4006
+				},
+				"width": 6015,
+				"height": 4006,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"logo": {
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1587569298236-28ceab2d321e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxsb2dvJTIwdHJhbnNwYXJlbnR8ZW58MHx8fHwxNzY2Nzc3OTk2fDA&ixlib=rb-4.1.0&q=85",
+				"alt": "red white and green round frame",
+				"origin": {
+					"id": "3elfU507la8",
+					"url": "https://images.unsplash.com/photo-1587569298236-28ceab2d321e?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxsb2dvJTIwdHJhbnNwYXJlbnR8ZW58MHx8fHwxNzY2Nzc3OTk2fDA&ixlib=rb-4.1.0&q=85",
+					"width": 2892,
+					"height": 2742
+				},
+				"width": 2892,
+				"height": 2742,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			}
+		},
+		"items": []
+	}
+]

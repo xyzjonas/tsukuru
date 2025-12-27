@@ -1,0 +1,50 @@
+{
+  "id": "items_matrix",
+  "type": "SharedSlice",
+  "name": "ItemsMatrix",
+  "description": "ItemsMatrix",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "Text",
+          "config": {
+            "label": "Heading",
+            "placeholder": ""
+          }
+        },
+        "tiles": {
+          "type": "Group",
+          "config": {
+            "label": "Tiles",
+            "repeat": true,
+            "fields": {
+              "background": {
+                "type": "Image",
+                "config": {
+                  "label": "background",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "label": {
+                "type": "Text",
+                "config": {
+                  "label": "label",
+                  "placeholder": ""
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

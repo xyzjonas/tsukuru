@@ -22,5 +22,8 @@
     "eslint": "^9.36.0",
     "nuxt": "^4.1.2",
     "slice-machine-ui": "^2.20.5"
+  },
+  "dependencies": {
+    "open-props": "^1.7.17"
   }
 }

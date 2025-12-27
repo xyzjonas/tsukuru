@@ -2,22 +2,94 @@
 
 import type * as prismic from "@prismicio/client";
 
-type Simplify<T> = {
-  [KeyType in keyof T]: T[KeyType];
-};
-/** Content for Page documents */
+type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
+
+type PickContentRelationshipFieldData<
+  TRelationship extends
+    | prismic.CustomTypeModelFetchCustomTypeLevel1
+    | prismic.CustomTypeModelFetchCustomTypeLevel2
+    | prismic.CustomTypeModelFetchGroupLevel1
+    | prismic.CustomTypeModelFetchGroupLevel2,
+  TData extends Record<
+    string,
+    | prismic.AnyRegularField
+    | prismic.GroupField
+    | prismic.NestedGroupField
+    | prismic.SliceZone
+  >,
+  TLang extends string,
+> =
+  // Content relationship fields
+  {
+    [TSubRelationship in Extract<
+      TRelationship["fields"][number],
+      prismic.CustomTypeModelFetchContentRelationshipLevel1
+    > as TSubRelationship["id"]]: ContentRelationshipFieldWithData<
+      TSubRelationship["customtypes"],
+      TLang
+    >;
+  } & // Group
+  {
+    [TGroup in Extract<
+      TRelationship["fields"][number],
+      | prismic.CustomTypeModelFetchGroupLevel1
+      | prismic.CustomTypeModelFetchGroupLevel2
+    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<
+      infer TGroupData
+    >
+      ? prismic.GroupField<
+          PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
+        >
+      : never;
+  } & // Other fields
+  {
+    [TFieldKey in Extract<
+      TRelationship["fields"][number],
+      string
+    >]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+  };
+
+type ContentRelationshipFieldWithData<
+  TCustomType extends
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel1 | string)[]
+    | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
+  TLang extends string = string,
+> = {
+  [ID in Exclude<
+    TCustomType[number],
+    string
+  >["id"]]: prismic.ContentRelationshipField<
+    ID,
+    TLang,
+    PickContentRelationshipFieldData<
+      Extract<TCustomType[number], { id: ID }>,
+      Extract<prismic.Content.AllDocumentTypes, { type: ID }>["data"],
+      TLang
+    >
+  >;
+}[Exclude<TCustomType[number], string>["id"]];
+
+type PageDocumentDataSlicesSlice =
+  | SimpleTextSectionSlice
+  | HeroSlice
+  | ItemsMatrixSlice
+  | RichTextSlice;
+
+/**
+ * Content for Page documents
+ */
 interface PageDocumentData {
   /**
    * Title field in *Page*
    *
-   * - **Field Type**: Title
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: page.title
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  title: prismic.TitleField;
+  title: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Page*
    *
@@ -25,91 +97,329 @@ interface PageDocumentData {
    * - **Placeholder**: *None*
    * - **API ID Path**: page.slices[]
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-   *
+   * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<PageDocumentDataSlicesSlice>;
 }
-/**
- * Slice for *Page → Slice Zone*
- *
- */
-type PageDocumentDataSlicesSlice = RichTextSlice;
+
 /**
  * Page document from Prismic
  *
  * - **API ID**: `page`
  * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
+
 export type AllDocumentTypes = PageDocument;
+
 /**
- * Primary content in RichText → Primary
- *
+ * Primary content in *Hero → Default → Primary*
  */
-interface RichTextSliceDefaultPrimary {
+export interface HeroSliceDefaultPrimary {
   /**
-   * Content field in *RichText → Primary*
+   * LinkText field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.linktext
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  linktext: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Background field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background: prismic.ImageField<never>;
+
+  /**
+   * Logo field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.default.primary.logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Hero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Hero*
+ */
+type HeroSliceVariation = HeroSliceDefault;
+
+/**
+ * Hero Shared Slice
+ *
+ * - **API ID**: `hero`
+ * - **Description**: Hero
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Item in *ItemsMatrix → Default → Primary → Tiles*
+ */
+export interface ItemsMatrixSliceDefaultPrimaryTilesItem {
+  /**
+   * background field in *ItemsMatrix → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.default.primary.tiles[].background
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background: prismic.ImageField<never>;
+
+  /**
+   * label field in *ItemsMatrix → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.default.primary.tiles[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *ItemsMatrix → Default → Primary*
+ */
+export interface ItemsMatrixSliceDefaultPrimary {
+  /**
+   * Heading field in *ItemsMatrix → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  heading: prismic.KeyTextField;
+
+  /**
+   * Tiles field in *ItemsMatrix → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.default.primary.tiles[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tiles: prismic.GroupField<Simplify<ItemsMatrixSliceDefaultPrimaryTilesItem>>;
+}
+
+/**
+ * Default variation for ItemsMatrix Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ItemsMatrixSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ItemsMatrixSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ItemsMatrix*
+ */
+type ItemsMatrixSliceVariation = ItemsMatrixSliceDefault;
+
+/**
+ * ItemsMatrix Shared Slice
+ *
+ * - **API ID**: `items_matrix`
+ * - **Description**: ItemsMatrix
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ItemsMatrixSlice = prismic.SharedSlice<
+  "items_matrix",
+  ItemsMatrixSliceVariation
+>;
+
+/**
+ * Primary content in *RichText → Default → Primary*
+ */
+export interface RichTextSliceDefaultPrimary {
+  /**
+   * Content field in *RichText → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Lorem ipsum...
-   * - **API ID Path**: rich_text.primary.content
-   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-   *
+   * - **API ID Path**: rich_text.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   content: prismic.RichTextField;
 }
+
 /**
  * Default variation for RichText Slice
  *
  * - **API ID**: `default`
- * - **Description**: `RichText`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: RichText
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type RichTextSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<RichTextSliceDefaultPrimary>,
   never
 >;
+
 /**
  * Slice variation for *RichText*
- *
  */
 type RichTextSliceVariation = RichTextSliceDefault;
+
 /**
  * RichText Shared Slice
  *
  * - **API ID**: `rich_text`
- * - **Description**: `RichText`
- * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
- *
+ * - **Description**: RichText
+ * - **Documentation**: https://prismic.io/docs/slices
  */
 export type RichTextSlice = prismic.SharedSlice<
   "rich_text",
   RichTextSliceVariation
 >;
+
+/**
+ * Primary content in *SimpleTextSection → Default → Primary*
+ */
+export interface SimpleTextSectionSliceDefaultPrimary {
+  /**
+   * Title field in *SimpleTextSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_text_section.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *SimpleTextSection → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_text_section.default.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Body field in *SimpleTextSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_text_section.default.primary.body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Default variation for SimpleTextSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SimpleTextSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SimpleTextSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SimpleTextSection*
+ */
+type SimpleTextSectionSliceVariation = SimpleTextSectionSliceDefault;
+
+/**
+ * SimpleTextSection Shared Slice
+ *
+ * - **API ID**: `simple_text_section`
+ * - **Description**: SimpleTextSection
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SimpleTextSectionSlice = prismic.SharedSlice<
+  "simple_text_section",
+  SimpleTextSectionSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
+      options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
   }
+
+  interface CreateWriteClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options: prismic.WriteClientConfig,
+    ): prismic.WriteClient<AllDocumentTypes>;
+  }
+
+  interface CreateMigration {
+    (): prismic.Migration<AllDocumentTypes>;
+  }
+
   namespace Content {
     export type {
+      PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      PageDocument,
       AllDocumentTypes,
-      RichTextSliceDefaultPrimary,
-      RichTextSliceDefault,
-      RichTextSliceVariation,
+      HeroSlice,
+      HeroSliceDefaultPrimary,
+      HeroSliceVariation,
+      HeroSliceDefault,
+      ItemsMatrixSlice,
+      ItemsMatrixSliceDefaultPrimaryTilesItem,
+      ItemsMatrixSliceDefaultPrimary,
+      ItemsMatrixSliceVariation,
+      ItemsMatrixSliceDefault,
       RichTextSlice,
+      RichTextSliceDefaultPrimary,
+      RichTextSliceVariation,
+      RichTextSliceDefault,
+      SimpleTextSectionSlice,
+      SimpleTextSectionSliceDefaultPrimary,
+      SimpleTextSectionSliceVariation,
+      SimpleTextSectionSliceDefault,
     };
   }
 }

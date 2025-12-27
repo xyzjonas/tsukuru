@@ -10,6 +10,6 @@ slicemachine:
 build:
   npm run build
 
-[working-directory: 'tisknilepe3d']
+# [working-directory: 'tisknilepe3d']
 generate:
   npx nuxt generate
