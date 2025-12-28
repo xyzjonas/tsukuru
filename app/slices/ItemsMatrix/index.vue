@@ -17,16 +17,19 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    class="wrapper"
   >
-    <h3>{{ slice.primary.heading }}</h3>
-    <div class="tiles">
-      <div
-        v-for="(tile, index) in slice.primary.tiles"
-        :key="index"
-        class="card"
-      >
-        <PrismicImage :field="tile.background" />
-        <p>{{ tile.label }}</p>
+    <div class="w-page">
+      <h3>{{ slice.primary.heading }}</h3>
+      <div class="tiles">
+        <div
+          v-for="(tile, index) in slice.primary.tiles"
+          :key="index"
+          class="card"
+        >
+          <PrismicImage :field="tile.background" />
+          <p>{{ tile.label }}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -35,20 +38,30 @@ defineProps(
 <style lang="css" scoped>
 section {
   background-color: #24272e;
-  padding: 32px;
+  /* padding: 32px; */
   color: white;
   border-radius: 8px;
+}
+
+.wrapper {
+  padding-inline: var(--size-8);
+}
+
+@media screen and (max-width: 599px) {
+  .wrapper {
+    padding-inline: var(--size-4);
+  }
 }
 
 .tiles {
   display: flex;
   overflow-x: auto;
-  gap: 1.8rem;
+  gap: 1rem;
 
   overflow-x: auto;
   padding-block: 1rem;
   margin-top: 1rem;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 599px) {
@@ -99,12 +112,14 @@ section {
   inset: 0;
   object-fit: cover;
   object-position: center;
+  height: 100%;
   border-radius: 8px;
 }
 
 .card p {
   z-index: 10;
   font-size: small;
+  font-weight: bold;
   text-align: center;
   margin-bottom: 12px;
   text-overflow: 1px 1px black;

@@ -15,10 +15,11 @@
 :root {
   --brand-color: #db802f;
   --border-color: #4f7c98;
+  --light-bg-color: var(--surface-4);
 }
 
 .w-page {
-  /* max-width: 1280px; */
+  max-width: 1280px;
   margin-inline: auto;
 }
 
@@ -34,7 +35,7 @@ section {
   /* flex-direction: column; */
   /* align-items: center; */
   /* gap: var(--size-5); */
-  /* padding: var(--size-11) 0; */
+  padding: var(--size-10) 1rem;
 }
 
 section:nth-child(even) {
@@ -42,6 +43,6 @@ section:nth-child(even) {
 }
 
 section:nth-child(odd) {
-  background: var(--surface-4);
+  background: var(--light-bg-color);
 }
 </style>

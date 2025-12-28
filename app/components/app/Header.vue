@@ -4,7 +4,7 @@
     <div class="links">
       <a href="#">kontakty</a>
       <a href="#">galerie</a>
-      <a class="highlight" href="#">zabezpecený workflow</a>
+      <a class="highlight" href="#">zabezpecený&nbsp;workflow</a>
     </div>
   </header>
 </template>
@@ -42,11 +42,11 @@ a {
 }
 
 .highlight {
+  text-align: center;
   font-weight: bold;
   border: 1px solid var(--border-color);
   padding: 5px 10px;
   border-radius: 3px;
-  line-break: none;
 }
 
 @media screen and (max-width: 599px) {

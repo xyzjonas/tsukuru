@@ -17,8 +17,9 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
+    class="wrapper"
   >
-    <div>
+    <div class="w-page">
       <h2>{{ slice.primary.title }}</h2>
       <h5 v-if="slice.primary.subtitle">{{ slice.primary.subtitle }}</h5>
       <PrismicText :field="slice.primary.body" />
@@ -33,7 +34,22 @@ section {
   gap: 2rem;
 }
 
-div {
-  padding: 5rem;
+h2 {
+  line-height: var(--font-lineheight-0);
+  margin-bottom: 1rem;
 }
+
+.wrapper {
+  padding-inline: var(--size-8);
+}
+
+@media screen and (max-width: 599px) {
+  .wrapper {
+    padding-inline: var(--size-4);
+  }
+}
+
+/* div {
+  padding: 5rem;
+} */
 </style>
