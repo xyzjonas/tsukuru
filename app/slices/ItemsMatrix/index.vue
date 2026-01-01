@@ -27,7 +27,9 @@ defineProps(
           :key="index"
           class="card"
         >
-          <PrismicImage :field="tile.background" />
+          <div class="image-wrapper">
+            <PrismicImage :field="tile.background" />
+          </div>
           <p>{{ tile.label }}</p>
         </div>
       </div>
@@ -37,8 +39,6 @@ defineProps(
 
 <style lang="css" scoped>
 section {
-  background-color: #24272e;
-  /* padding: 32px; */
   color: white;
   border-radius: 8px;
 }
@@ -61,7 +61,7 @@ section {
   overflow-x: auto;
   padding-block: 1rem;
   margin-top: 1rem;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 @media screen and (max-width: 599px) {
@@ -73,21 +73,25 @@ section {
 .card {
   /* width: 12rem; */
   /* height: 14rem; */
+  position: relative;
   flex: 1;
   aspect-ratio: 0.9;
-  position: relative;
 
-  max-width: 256px;
+  /* max-width: 256px; */
   min-width: 196px;
 
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
+  box-shadow: var(--shadow-3);
 
   z-index: 10;
 
   display: flex;
-  align-items: end;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+
+  padding: 12px;
 }
 
 .card::after {
@@ -103,7 +107,21 @@ section {
   border-radius: 8px;
 }
 
-.card > img {
+.image-wrapper {
+  position: relative;
+  /* background-color: red; */
+  align-self: stretch;
+  flex: 1;
+  margin: 28px;
+}
+
+@media screen and (max-width: 599px) {
+  .image-wrapper {
+    margin: 12px;
+  }
+}
+
+.image-wrapper > img {
   object-position: center;
   object-fit: cover;
 
@@ -114,11 +132,14 @@ section {
   object-position: center;
   height: 100%;
   border-radius: 8px;
+  filter: blur(0.3px) drop-shadow(0 0 12px rgba(55, 67, 83, 0.678));
+  scrollbar-color: transparent;
+  scrollbar-track-color: transparent;
 }
 
 .card p {
   z-index: 10;
-  font-size: small;
+  font-size: 13px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 12px;

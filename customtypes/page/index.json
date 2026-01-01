@@ -27,6 +27,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "form": {
+              "type": "SharedSlice"
+            },
             "cards": {
               "type": "SharedSlice"
             },
@@ -37,9 +40,6 @@
               "type": "SharedSlice"
             },
             "items_matrix": {
-              "type": "SharedSlice"
-            },
-            "rich_text": {
               "type": "SharedSlice"
             }
           }

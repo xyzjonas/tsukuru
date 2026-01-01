@@ -33,11 +33,14 @@ defineProps(
 section {
   width: 100%;
   height: 40rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  gap: 1rem;
+  align-items: center;
   justify-content: center;
-  align-content: center;
+  gap: 5rem;
+  /* justify-content: center; */
+  /* align-content: center; */
 
   z-index: 0;
 }
@@ -63,7 +66,7 @@ section::after {
 
 .actions p {
   color: white;
-  margin-top: 8px;
+  /* margin-top: auto; */
   text-shadow: 1px 1px darkslategray;
 }
 
@@ -85,9 +88,21 @@ section::after {
 }
 
 .logo > img {
-  width: 164px;
-  height: 164px;
+  /* width: 164px; */
+  /* height: 164px; */
+  width: 358px;
   z-index: 10;
+  filter: blur(0.4px) drop-shadow(0 0 12px rgba(156, 150, 150, 0.5))
+    drop-shadow(0 0 15px rgba(43, 43, 43, 0.5));
+  justify-self: start;
+}
+
+@media screen and (max-width: 599px) {
+  .logo > img {
+    /* width: 164px; */
+    /* height: 164px; */
+    width: 256px;
+  }
 }
 
 .btn {

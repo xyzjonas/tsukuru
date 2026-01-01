@@ -11,6 +11,7 @@
 
 @import "open-props/normalize";
 @import "open-props/shadow/style";
+@import "open-props/buttons";
 
 :root {
   --brand-color: #db802f;
@@ -35,14 +36,17 @@ section {
   /* flex-direction: column; */
   /* align-items: center; */
   /* gap: var(--size-5); */
-  padding: var(--size-10) 1rem;
+  padding: var(--size-8) 1rem;
 }
 
 section:nth-child(even) {
-  background: var(--surface-1);
+  /* background: var(--surface-1); */
+  /* background-color: #212121; */
+  /* background: #23262d; */
 }
 
 section:nth-child(odd) {
-  background: var(--light-bg-color);
+  /* background: var(--light-bg-color); */
+  background-color: #212121;
 }
 </style>

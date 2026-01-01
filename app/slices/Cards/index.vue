@@ -37,8 +37,6 @@ defineProps(
 
 <style lang="css" scoped>
 section {
-  background-color: #24272e;
-  /* padding: 32px; */
   color: white;
   border-radius: 8px;
 }
@@ -72,7 +70,7 @@ section {
 }
 
 .card {
-  border: 2px solid var(--gray-10);
+  border: 1px solid var(--gray-10);
   border-radius: 8px;
 
   display: flex;
@@ -85,21 +83,35 @@ section {
 
 .title-row {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: start;
   gap: 1rem;
 }
 
+p {
+  text-align: center;
+}
+
 h2 {
-  font-size: xx-large;
-  text-transform: capitalize;
+  font-size: 30px;
 }
 
 .title-row > img {
-  width: 64px;
+  width: 128px;
   aspect-ratio: 1;
   object-fit: cover;
   object-position: center;
   border-radius: 100%;
+}
+
+@media screen and (max-width: 599px) {
+  /* .title-row > img {
+    width: 96px;
+  } */
+
+  h2 {
+    font-size: x-large;
+  }
 }
 </style>

@@ -70,11 +70,11 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type PageDocumentDataSlicesSlice =
+  | FormSlice
   | CardsSlice
   | SimpleTextSectionSlice
   | HeroSlice
-  | ItemsMatrixSlice
-  | RichTextSlice;
+  | ItemsMatrixSlice;
 
 /**
  * Content for Page documents
@@ -193,6 +193,33 @@ type CardsSliceVariation = CardsSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type CardsSlice = prismic.SharedSlice<"cards", CardsSliceVariation>;
+
+/**
+ * Default variation for Form Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FormSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Form*
+ */
+type FormSliceVariation = FormSliceDefault;
+
+/**
+ * Form Shared Slice
+ *
+ * - **API ID**: `form`
+ * - **Description**: Form
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FormSlice = prismic.SharedSlice<"form", FormSliceVariation>;
 
 /**
  * Primary content in *Hero → Default → Primary*
@@ -486,6 +513,9 @@ declare module "@prismicio/client" {
       CardsSliceDefaultPrimary,
       CardsSliceVariation,
       CardsSliceDefault,
+      FormSlice,
+      FormSliceVariation,
+      FormSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

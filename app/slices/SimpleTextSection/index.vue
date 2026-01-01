@@ -48,8 +48,4 @@ h2 {
     padding-inline: var(--size-4);
   }
 }
-
-/* div {
-  padding: 5rem;
-} */
 </style>
