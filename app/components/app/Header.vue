@@ -1,10 +1,14 @@
 <template>
   <header>
-    <h1>Tiskni<span style="color: var(--brand-color)">Lepe3D</span></h1>
+    <h1>
+      <a id="goHome" href="/"
+        >Tiskni<span style="color: var(--brand-color)">Lepe3D</span></a
+      >
+    </h1>
     <div class="links">
-      <a href="#">kontakty</a>
-      <a href="#">galerie</a>
-      <a class="highlight" href="#">zabezpecený&nbsp;workflow</a>
+      <a class="link" href="#">kontakty</a>
+      <a class="link" href="#">galerie</a>
+      <a class="link highlight" href="/workflow">zabezpecený&nbsp;workflow</a>
     </div>
   </header>
 </template>
@@ -31,11 +35,15 @@ header {
   justify-content: end;
 }
 
+#goHome {
+  color: white;
+}
+
 h1 {
   font-size: large;
 }
 
-a {
+.link {
   font-size: small;
   color: white;
   text-transform: uppercase;

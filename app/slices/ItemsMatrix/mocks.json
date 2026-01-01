@@ -43,6 +43,20 @@
 									"type": "Text",
 									"value": "Prusa MK4S"
 								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Quis ullamco fugiat tempor eu commodo laboris veniam nostrud eu dolor voluptate ullamco ad tempor. Non et elit cillum."
+											}
+										}
+									]
+								}
 							]
 						]
 					},
@@ -83,6 +97,20 @@
 									"type": "Text",
 									"value": "Prusa Core One L Plus x blah blah"
 								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Excepteur esse in fugiat cupidatat proident et cupidatat do aliqua non laborum consectetur ipsum."
+											}
+										}
+									]
+								}
 							]
 						]
 					},
@@ -122,6 +150,20 @@
 									"__TYPE__": "FieldContent",
 									"type": "Text",
 									"value": "Strateo X5S"
+								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Minim sunt velit id magna fugiat quis veniam esse."
+											}
+										}
+									]
 								}
 							]
 						]

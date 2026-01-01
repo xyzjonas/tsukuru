@@ -316,6 +316,16 @@ export interface ItemsMatrixSliceDefaultPrimaryTilesItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   label: prismic.KeyTextField;
+
+  /**
+   * Popup content field in *ItemsMatrix → Default → Primary → Tiles*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.default.primary.tiles[].popup_content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  popup_content: prismic.RichTextField;
 }
 
 /**

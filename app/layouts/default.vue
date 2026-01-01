@@ -2,7 +2,7 @@
   <div class="page">
     <AppHeader class="w-page" />
     <slot class="page-content" />
-    <!-- <AppFooter class="foot" /> -->
+    <AppFooter class="foot" />
   </div>
 </template>
 <style lang="css" scoped>
@@ -24,5 +24,6 @@
 
 .foot {
   justify-self: end;
+  margin-top: auto;
 }
 </style>

@@ -3,7 +3,7 @@ import type { Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.ItemsMatrixSlice>([
     "slice",
     "index",
@@ -11,6 +11,25 @@ defineProps(
     "context",
   ])
 );
+
+const isToggled = ref(false);
+const selectedIndex = ref(-1);
+const selectedTile = computed(
+  () => props.slice.primary.tiles[selectedIndex.value] ?? undefined
+);
+
+const onTileClick = (index: number) => {
+  const tile = props.slice.primary.tiles[index];
+  if (tile && tile.popup_content?.length > 0) {
+    selectedIndex.value = index;
+    isToggled.value = true;
+  }
+};
+
+const onTileClose = () => {
+  isToggled.value = false;
+  setTimeout(() => (selectedIndex.value = -1), 350);
+};
 </script>
 
 <template>
@@ -26,11 +45,22 @@ defineProps(
           v-for="(tile, index) in slice.primary.tiles"
           :key="index"
           class="card"
+          @click="onTileClick(index)"
         >
           <div class="image-wrapper">
             <PrismicImage :field="tile.background" />
           </div>
           <p>{{ tile.label }}</p>
+        </div>
+      </div>
+      <div
+        id="slider"
+        :class="[isToggled ? 'active' : '']"
+        @click="onTileClose"
+      >
+        <div v-if="selectedTile" class="sliderBody">
+          <div id="sliderClose" @click="onTileClose">⨉</div>
+          <PrismicRichText :field="selectedTile.popup_content" />
         </div>
       </div>
     </div>
@@ -55,13 +85,11 @@ section {
 
 .tiles {
   display: flex;
-  overflow-x: auto;
   gap: 1rem;
 
   overflow-x: auto;
   padding-block: 1rem;
   margin-top: 1rem;
-  /* justify-content: space-between; */
 }
 
 @media screen and (max-width: 599px) {
@@ -92,6 +120,13 @@ section {
   justify-content: end;
 
   padding: 12px;
+  transition: all ease-in-out 0.1s;
+}
+
+.card:hover {
+  cursor: pointer;
+  /* box-shadow: var(--shadow-5); */
+  transform: scale(0.99);
 }
 
 .card::after {
@@ -133,8 +168,6 @@ section {
   height: 100%;
   border-radius: 8px;
   filter: blur(0.3px) drop-shadow(0 0 12px rgba(55, 67, 83, 0.678));
-  scrollbar-color: transparent;
-  scrollbar-track-color: transparent;
 }
 
 .card p {
@@ -144,5 +177,54 @@ section {
   text-align: center;
   margin-bottom: 12px;
   text-overflow: 1px 1px black;
+}
+
+#slider {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 120;
+  background-color: var(--gray-10);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+
+  padding: 64px;
+  overflow-y: scroll;
+}
+
+#sliderClose {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  z-index: 125;
+  font-size: x-large;
+  cursor: pointer;
+
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.sliderBody {
+  position: relative;
+  width: 100%;
+}
+
+#slider.active {
+  transform: translateX(0);
+}
+
+@media screen and (max-width: 599px) {
+  #slider {
+    padding: 48px;
+  }
+  .sliderBody {
+    width: calc(100% - 32px / 4);
+  }
+
+  #slider.active {
+    transform: translateX(0);
+  }
 }
 </style>

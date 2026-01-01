@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="pageWrapper">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -20,7 +20,7 @@
 }
 
 .w-page {
-  max-width: 1280px;
+  max-width: 1100px;
   margin-inline: auto;
 }
 
@@ -48,5 +48,12 @@ section:nth-child(even) {
 section:nth-child(odd) {
   /* background: var(--light-bg-color); */
   background-color: #212121;
+}
+
+#pageWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
 }
 </style>

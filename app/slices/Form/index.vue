@@ -146,4 +146,8 @@ label {
     grid-template-columns: 1fr;
   }
 }
+
+fieldset {
+  border-color: var(--gray-8);
+}
 </style>

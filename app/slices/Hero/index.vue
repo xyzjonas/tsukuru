@@ -66,7 +66,7 @@ section::after {
 
 .actions p {
   color: white;
-  /* margin-top: auto; */
+  margin-top: 1rem;
   text-shadow: 1px 1px darkslategray;
 }
 

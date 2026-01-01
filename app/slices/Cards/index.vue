@@ -95,6 +95,7 @@ p {
 
 h2 {
   font-size: 30px;
+  text-align: center;
 }
 
 .title-row > img {
