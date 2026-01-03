@@ -41,6 +41,7 @@ header {
 
 h1 {
   font-size: large;
+  margin: 0;
 }
 
 .link {
