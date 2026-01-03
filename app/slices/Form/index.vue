@@ -16,10 +16,9 @@ defineProps(
 <template>
   <section>
     <form action="#" method="post" enctype="multipart/form-data" class="w-page">
-      <fieldset class="grid-3">
-        <legend>Kontaktní údaje</legend>
+      <div class="grid-2">
         <span>
-          <label for="name">Vaše jméno *</label>
+          <label for="name">Jméno *</label>
           <input type="text" id="name" name="name" required />
         </span>
         <span>
@@ -27,24 +26,28 @@ defineProps(
           <input type="tel" id="phone" name="phone" placeholder="789 456 123" />
         </span>
         <span>
-          <label for="email">Email *</label>
+          <label for="email">E-mail *</label>
           <input type="email" id="email" name="email" required />
         </span>
-      </fieldset>
+        <span>
+          <label for="subject">Předmět *</label>
+          <input type="subject" id="email" name="email" required />
+        </span>
+      </div>
 
-      <fieldset class="grid-1">
-        <legend>Poptávka</legend>
+      <div class="grid-1">
+        <span>
+          <label for="notes">Co nejvíce specifikujte Váš požadavek *</label>
+          <textarea
+            id="notes"
+            name="notes"
+            rows="6"
+            placeholder="K čemu bude díl sloužit, rozměry, pevnost vs. cena..."
+          ></textarea>
+        </span>
+      </div>
 
-        <label for="service">Poptávám službu *</label>
-        <select id="service" name="service" required>
-          <option value="">Vyberte si službu</option>
-          <option value="Běžný-3D-tisk">Běžný 3D tisk</option>
-          <option value="Výroba-náhradního-dílu">Výroba náhradního dílu</option>
-          <option value="3D-modelování-a-skenování">
-            3D modelování / skenování
-          </option>
-        </select>
-
+      <div class="grid-1">
         <label for="file-upload">Model nebo výkres (Max 25 MB)</label>
         <input
           id="file-upload"
@@ -53,64 +56,33 @@ defineProps(
           multiple
           accept=".stl,.step,.stp,.obj,.3mf,.pdf,.jpg,.png,.zip"
         />
+      </div>
 
-        <!-- <FormFileUpload /> -->
+      <div class="grid-2">
+        <span>
+          <label for="color">Barva</label>
+          <select id="color" name="color">
+            <option value="black">Černá</option>
+            <option value="white">Bílá</option>
+            <option value="other">Jiná (napsat do zprávy)</option>
+          </select>
+        </span>
 
-        <label for="notes">Poznámky</label>
-        <textarea
-          id="notes"
-          name="notes"
-          rows="6"
-          placeholder="K čemu bude díl sloužit, rozměry, pevnost vs. cena..."
-        ></textarea>
-      </fieldset>
+        <span>
+          <label for="material">Materiál</label>
+          <select id="material" name="material">
+            <option value="Nechám-si-poradit">Nechám si poradit</option>
+            <option value="PLA">PLA</option>
+            <option value="PETG">PETG</option>
+            <option value="ASA">ASA</option>
+            <option value="Resin">Resin/SLA</option>
+          </select>
+        </span>
 
-      <fieldset>
-        <legend>Technické specifikace</legend>
+        ...
+      </div>
 
-        <label for="quantity">Počet kusů</label>
-        <input type="number" id="quantity" name="quantity" value="1" min="1" />
-
-        <label for="material">Materiál</label>
-        <select id="material" name="material">
-          <option value="Nechám-si-poradit">Nechám si poradit</option>
-          <option value="PLA">PLA</option>
-          <option value="PETG">PETG</option>
-          <option value="ASA">ASA</option>
-          <option value="Resin">Resin/SLA</option>
-        </select>
-
-        <label for="color">Barva</label>
-        <select id="color" name="color">
-          <option value="Nezáleží">Nezáleží</option>
-          <option value="Bílá">Bílá</option>
-          <option value="Černá">Černá</option>
-          <option value="Šedá">Šedá</option>
-        </select>
-
-        <p>Klíčové vlastnosti:</p>
-        <label
-          ><input type="checkbox" name="features[]" value="Pevnost" /> Vysoká
-          pevnost</label
-        >
-        <label
-          ><input type="checkbox" name="features[]" value="Pružnost" />
-          Pružnost</label
-        >
-        <label
-          ><input type="checkbox" name="features[]" value="Teplota" /> Tepelná
-          odolnost</label
-        >
-      </fieldset>
-
-      <fieldset>
-        <label>
-          <input type="checkbox" name="consent" required /> Souhlasím se
-          zpracováním údajů a obchodními podmínkami *
-        </label>
-      </fieldset>
-
-      <button type="submit">Získat nezávaznou nabídku</button>
+      <button type="submit">Odeslat</button>
     </form>
   </section>
 </template>
@@ -120,6 +92,10 @@ form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 2rem;
+  border: 1px solid var(--gray-10);
+  box-shadow: var(--shadow-5);
+  border-radius: 8px;
 }
 button {
   color: white;
@@ -131,9 +107,32 @@ label {
   margin-right: 8px;
 }
 
+span {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+span > input {
+  flex: 1;
+}
+
+span > textarea {
+  flex: 1;
+}
+
+span > label {
+}
+
 .grid-1 {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
@@ -144,7 +143,8 @@ label {
 }
 
 @media screen and (max-width: 599px) {
-  .grid-3 {
+  .grid-3,
+  .grid-2 {
     grid-template-columns: 1fr;
   }
 }
