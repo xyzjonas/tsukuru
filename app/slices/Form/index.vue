@@ -54,6 +54,8 @@ defineProps(
           accept=".stl,.step,.stp,.obj,.3mf,.pdf,.jpg,.png,.zip"
         />
 
+        <!-- <FormFileUpload /> -->
+
         <label for="notes">Poznámky</label>
         <textarea
           id="notes"
@@ -149,5 +151,26 @@ label {
 
 fieldset {
   border-color: var(--gray-8);
+}
+
+/* Style the file input button (webkit browsers) */
+input[type="file"]::file-selector-button {
+  background-color: var(--dark-bg-color);
+  color: white;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--dark-bg-color);
+}
+
+/* Firefox */
+input[type="file"]::file-selector-button {
+  background-color: var(--dark-bg-color);
+  color: white;
+}
+
+/* Force color scheme on the input itself */
+input[type="file"] {
+  color-scheme: dark;
 }
 </style>

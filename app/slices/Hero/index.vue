@@ -112,7 +112,7 @@ section::after {
   color: white;
   text-decoration: none;
   border-radius: 0.375rem;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   transition: background-color 0.2s ease;
   text-transform: uppercase;

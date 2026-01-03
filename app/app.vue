@@ -17,11 +17,51 @@
   --brand-color: #db802f;
   --border-color: #4f7c98;
   --light-bg-color: var(--surface-4);
+  --dark-bg-color: #212529;
+
+  /* --shadow-2: 0 0 0 3px hsl(0 0% 20%); */
+  --surface-3: transparent;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+button {
+  font-weight: normal;
 }
 
 .w-page {
   max-width: 1100px;
   margin-inline: auto;
+}
+
+body {
+  background-color: var(--dark-bg-color);
+  /* #101214 */
+  color: white;
+}
+
+h1 {
+  line-height: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Form elements */
+input,
+textarea,
+select {
+  background: #1a1a1a;
+  color: inherit;
+  border: 1px solid #333;
+  font: inherit;
+}
+
+/* Remove white backgrounds from autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #1a1a1a inset;
+  -webkit-text-fill-color: #e0e0e0;
 }
 
 /* Set fonts */
@@ -40,9 +80,7 @@ section {
 }
 
 section:nth-child(even) {
-  /* background: var(--surface-1); */
-  /* background-color: #212121; */
-  /* background: #23262d; */
+  background-color: var(--dark-bg-color);
 }
 
 section:nth-child(odd) {

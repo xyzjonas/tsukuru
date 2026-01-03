@@ -38,7 +38,7 @@ defineProps(
 <style lang="css" scoped>
 section {
   color: white;
-  border-radius: 8px;
+  /* border-radius: 8px; */
 }
 
 .wrapper {

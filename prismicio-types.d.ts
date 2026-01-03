@@ -69,6 +69,20 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+interface NavDocumentData {}
+
+/**
+ * nav document from Prismic
+ *
+ * - **API ID**: `nav`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NavDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<NavDocumentData>, "nav", Lang>;
+
 type PageDocumentDataSlicesSlice =
   | FormSlice
   | CardsSlice
@@ -115,7 +129,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = PageDocument;
+export type AllDocumentTypes = NavDocument | PageDocument;
 
 /**
  * Item in *Cards → Default → Primary → cards*
@@ -514,6 +528,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      NavDocument,
+      NavDocumentData,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

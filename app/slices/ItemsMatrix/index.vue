@@ -70,7 +70,6 @@ const onTileClose = () => {
 <style lang="css" scoped>
 section {
   color: white;
-  border-radius: 8px;
 }
 
 .wrapper {
