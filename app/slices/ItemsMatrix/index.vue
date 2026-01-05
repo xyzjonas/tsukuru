@@ -47,6 +47,25 @@ const onTileClose = () => {
           class="card"
           @click="onTileClick(index)"
         >
+          <span class="expand">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <polyline points="9 21 3 21 3 15"></polyline>
+              <line x1="21" y1="3" x2="14" y2="10"></line>
+              <line x1="3" y1="21" x2="10" y2="14"></line>
+            </svg>
+            více
+          </span>
           <div class="image-wrapper">
             <PrismicImage :field="tile.background" />
           </div>
@@ -87,8 +106,22 @@ section {
   gap: 1rem;
 
   overflow-x: auto;
-  padding-block: 1rem;
+  padding-block: 2rem;
   margin-top: 1rem;
+
+  /* 1. Enable momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+
+  /* 2. Snap points for that "native app" feel */
+  scroll-snap-type: x mandatory;
+
+  /* 3. Hide scrollbars (Standard) */
+  scrollbar-width: none;
+}
+
+/* Hide scrollbars (Chrome/Safari/Edge) */
+.tiles::-webkit-scrollbar {
+  display: none;
 }
 
 @media screen and (max-width: 599px) {
@@ -119,13 +152,36 @@ section {
   justify-content: end;
 
   padding: 12px;
-  transition: all ease-in-out 0.1s;
+  transition: var(--transition);
+
+  scroll-snap-align: center; /* Items "stick" to the center when scrolling stops */
+}
+
+.expand {
+  position: absolute;
+  top: 5px;
+  right: 12px;
+  font-size: small;
+  color: var(--gray-6);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+}
+
+.expand > svg {
+  width: 12px;
 }
 
 .card:hover {
   cursor: pointer;
-  /* box-shadow: var(--shadow-5); */
-  transform: scale(0.99);
+  box-shadow: var(--shadow-4);
+  /* transform: scale(0.99); */
+}
+
+.card:hover .image-wrapper > img {
+  transform: scale(1.05);
 }
 
 .card::after {
@@ -167,6 +223,8 @@ section {
   height: 100%;
   border-radius: 8px;
   filter: blur(0.3px) drop-shadow(0 0 12px rgba(55, 67, 83, 0.678));
+
+  transition: var(--transition);
 }
 
 .card p {

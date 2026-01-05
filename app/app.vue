@@ -22,6 +22,8 @@
   /* --shadow-2: 0 0 0 3px hsl(0 0% 20%); */
   --surface-3: transparent;
 
+  --transition: transform 0.2s ease;
+
   font-family:
     system-ui,
     -apple-system,

@@ -37,6 +37,9 @@ header {
 
 #goHome {
   color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  min-width: 200px;
 }
 
 h1 {
