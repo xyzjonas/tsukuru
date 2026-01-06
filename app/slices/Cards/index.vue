@@ -19,17 +19,22 @@ defineProps(
     :data-slice-variation="slice.variation"
     class="wrapper"
   >
-    <div class="cards w-page">
-      <div
-        v-for="(card, index) in slice.primary.cards"
-        :key="index"
-        class="card"
-      >
-        <div class="title-row">
-          <PrismicImage :field="card.icon" />
-          <h2>{{ card.title }}</h2>
+    <div class="w-page">
+      <div class="rich-text">
+        <PrismicRichText :field="slice.primary.heading" />
+      </div>
+      <div class="cards">
+        <div
+          v-for="(card, index) in slice.primary.cards"
+          :key="index"
+          class="card"
+        >
+          <div class="title-row">
+            <PrismicImage :field="card.icon" />
+            <h2>{{ card.title }}</h2>
+          </div>
+          <p>{{ card.text }}</p>
         </div>
-        <p>{{ card.text }}</p>
       </div>
     </div>
   </section>
@@ -110,5 +115,16 @@ h2 {
   h2 {
     font-size: x-large;
   }
+}
+
+.w-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.rich-text {
+  align-self: center;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 </style>

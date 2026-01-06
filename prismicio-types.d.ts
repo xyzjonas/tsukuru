@@ -172,6 +172,16 @@ export interface CardsSliceDefaultPrimaryCardsItem {
  */
 export interface CardsSliceDefaultPrimary {
   /**
+   * Heading field in *Cards → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
    * cards field in *Cards → Default → Primary*
    *
    * - **Field Type**: Group
@@ -210,6 +220,21 @@ type CardsSliceVariation = CardsSliceDefault;
 export type CardsSlice = prismic.SharedSlice<"cards", CardsSliceVariation>;
 
 /**
+ * Primary content in *Form → Default → Primary*
+ */
+export interface FormSliceDefaultPrimary {
+  /**
+   * Heading field in *Form → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: form.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+}
+
+/**
  * Default variation for Form Slice
  *
  * - **API ID**: `default`
@@ -218,7 +243,7 @@ export type CardsSlice = prismic.SharedSlice<"cards", CardsSliceVariation>;
  */
 export type FormSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<FormSliceDefaultPrimary>,
   never
 >;
 
@@ -698,6 +723,7 @@ declare module "@prismicio/client" {
       CardsSliceVariation,
       CardsSliceDefault,
       FormSlice,
+      FormSliceDefaultPrimary,
       FormSliceVariation,
       FormSliceDefault,
       HeroSlice,

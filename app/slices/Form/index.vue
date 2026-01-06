@@ -16,6 +16,9 @@ defineProps(
 <template>
   <section>
     <form action="#" method="post" enctype="multipart/form-data" class="w-page">
+      <div class="rich-text">
+        <PrismicRichText :field="slice.primary.heading" />
+      </div>
       <div class="grid-2">
         <span>
           <label for="name">Jméno *</label>
@@ -87,12 +90,11 @@ defineProps(
   </section>
 </template>
 
-<style>
+<style lang="css" scoped>
 form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
   /* border: 1px solid var(--gray-10); */
   /* box-shadow: var(--shadow-5); */
   /* border-radius: 8px; */
@@ -100,7 +102,6 @@ form {
 button {
   color: white;
   background-color: var(--brand-color);
-  padding-block: 1rem;
 }
 
 label {
@@ -172,5 +173,15 @@ input[type="file"]::file-selector-button {
 /* Force color scheme on the input itself */
 input[type="file"] {
   color-scheme: dark;
+}
+
+.w-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.rich-text {
+  text-align: center;
+  align-self: center;
 }
 </style>

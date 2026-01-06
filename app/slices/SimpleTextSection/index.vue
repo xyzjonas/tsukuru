@@ -3,13 +3,27 @@ import { isFilled, type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.SimpleTextSectionSlice>([
     "slice",
     "index",
     "slices",
     "context",
   ])
+);
+
+const hasBackgroundImage = computed(() =>
+  isFilled.image(props.slice.primary.background)
+);
+
+const backgroundColor = computed(() =>
+  isFilled.color(props.slice.primary.background_color)
+    ? props.slice.primary.background_color
+    : "transparent"
+);
+
+const gradientDisplay = computed(() =>
+  hasBackgroundImage.value ? "block" : "none"
 );
 </script>
 
@@ -23,11 +37,11 @@ defineProps(
       :class="[
         'w-page',
         'image-wrapper',
-        isFilled.image(slice.primary.background) ? 'text-shadow' : '',
+        hasBackgroundImage ? 'text-shadow' : '',
       ]"
     >
       <PrismicImage
-        v-if="slice.primary.background"
+        v-if="hasBackgroundImage"
         :field="slice.primary.background"
       />
       <PrismicRichText :field="slice.primary.text" />
@@ -44,7 +58,7 @@ section {
   flex-direction: column;
   gap: 2rem;
   text-align: center;
-  background-color: v-bind(slice.primary.background_color);
+  background-color: v-bind(backgroundColor);
 }
 
 :deep(h2) {
@@ -81,6 +95,7 @@ section {
 }
 
 .image-wrapper::after {
+  display: v-bind(gradientDisplay);
   content: "";
   position: absolute;
   inset: 0;

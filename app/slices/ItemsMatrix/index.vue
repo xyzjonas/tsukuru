@@ -350,5 +350,6 @@ button {
   align-self: stretch;
   z-index: 250;
   text-shadow: none;
+  background-color: var(--brand-color);
 }
 </style>

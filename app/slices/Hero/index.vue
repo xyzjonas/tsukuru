@@ -109,7 +109,7 @@ section::after {
 button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  /* background-color: var(--brand-color); */
+  background-color: var(--brand-color);
   color: white;
   text-transform: uppercase;
   text-shadow: none;
