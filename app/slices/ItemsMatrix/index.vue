@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -30,6 +30,8 @@ const onTileClose = () => {
   isToggled.value = false;
   setTimeout(() => (selectedIndex.value = -1), 350);
 };
+
+const isRichVariant = computed(() => props.slice.variation === "withRichText");
 </script>
 
 <template>
@@ -39,18 +41,31 @@ const onTileClose = () => {
     class="wrapper"
   >
     <div class="w-page">
-      <h3>{{ slice.primary.heading }}</h3>
+      <div class="rich-text">
+        <PrismicRichText :field="slice.primary.heading" />
+      </div>
       <div class="tiles">
         <div
           v-for="(tile, index) in slice.primary.tiles"
           :key="index"
-          class="card"
+          :class="['card', isRichVariant ? 'card-rich' : '']"
         >
-          <div class="image-wrapper">
+          <div
+            :class="[isRichVariant ? 'image-wrapper-rich' : 'image-wrapper']"
+          >
             <PrismicImage :field="tile.background" />
           </div>
-          <p>{{ tile.label }}</p>
-          <button aria-label="more" @click="onTileClick(index)">více</button>
+          <div v-if="isRichVariant" class="rich-text rich-body">
+            <PrismicRichText :field="tile.text" />
+          </div>
+          <p v-else>{{ tile.label }}</p>
+          <button
+            v-if="isFilled.richText(tile.popup_content)"
+            aria-label="more"
+            @click="onTileClick(index)"
+          >
+            více
+          </button>
         </div>
       </div>
       <div
@@ -95,17 +110,13 @@ const onTileClose = () => {
 </template>
 
 <style lang="css" scoped>
-section {
-  color: white;
-}
-
 .w-page {
   display: flex;
   flex-direction: column;
   text-align: center;
 }
 
-h3 {
+.rich-text {
   align-self: center;
 }
 
@@ -166,12 +177,22 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
 
   padding: 18px;
   transition: var(--transition);
 
   scroll-snap-align: center; /* Items "stick" to the center when scrolling stops */
+}
+
+.card-rich {
+  aspect-ratio: 0.5;
+  padding-top: calc(256px + 18px);
+}
+
+.rich-body {
+  flex: 1;
+  overflow-y: scroll;
+  text-align: left;
 }
 
 .card:hover {
@@ -205,6 +226,20 @@ h3 {
   margin: 28px;
 }
 
+.image-wrapper-rich {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* background-color: red; */
+  align-self: stretch;
+  flex: 1;
+  margin: 0;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  height: 256px;
+}
+
 @media screen and (max-width: 599px) {
   .image-wrapper {
     margin: 12px;
@@ -215,7 +250,8 @@ h3 {
   }
 }
 
-.image-wrapper > img {
+.image-wrapper > img,
+.image-wrapper-rich > img {
   object-position: center;
   object-fit: cover;
 
@@ -229,6 +265,12 @@ h3 {
   filter: blur(0.3px) drop-shadow(0 0 12px rgba(55, 67, 83, 0.678));
 
   transition: var(--transition);
+}
+
+.image-wrapper-rich > img {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  filter: none;
 }
 
 .card p {

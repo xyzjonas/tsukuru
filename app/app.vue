@@ -51,9 +51,17 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   line-height: 100%;
   margin-bottom: 1rem;
+}
+
+h5 {
+  color: var(--gray-4);
 }
 
 /* Form elements */

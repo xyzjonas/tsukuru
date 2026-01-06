@@ -344,18 +344,63 @@ export interface ItemsMatrixSliceDefaultPrimaryTilesItem {
 }
 
 /**
+ * Item in *ItemsMatrix → With Rich Text → Primary → Tiles*
+ */
+export interface ItemsMatrixSliceWithRichTextPrimaryTilesItem {
+  /**
+   * background field in *ItemsMatrix → With Rich Text → Primary → Tiles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.tiles[].background
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background: prismic.ImageField<never>;
+
+  /**
+   * label field in *ItemsMatrix → With Rich Text → Primary → Tiles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.tiles[].label
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  label: prismic.KeyTextField;
+
+  /**
+   * Popup content field in *ItemsMatrix → With Rich Text → Primary → Tiles*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.tiles[].popup_content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  popup_content: prismic.RichTextField;
+
+  /**
+   * text field in *ItemsMatrix → With Rich Text → Primary → Tiles*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.tiles[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+}
+
+/**
  * Primary content in *ItemsMatrix → Default → Primary*
  */
 export interface ItemsMatrixSliceDefaultPrimary {
   /**
    * Heading field in *ItemsMatrix → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: items_matrix.default.primary.heading
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  heading: prismic.KeyTextField;
+  heading: prismic.RichTextField;
 
   /**
    * Tiles field in *ItemsMatrix → Default → Primary*
@@ -382,9 +427,51 @@ export type ItemsMatrixSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *ItemsMatrix → With Rich Text → Primary*
+ */
+export interface ItemsMatrixSliceWithRichTextPrimary {
+  /**
+   * Heading field in *ItemsMatrix → With Rich Text → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
+  /**
+   * Tiles field in *ItemsMatrix → With Rich Text → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: items_matrix.withRichText.primary.tiles[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tiles: prismic.GroupField<
+    Simplify<ItemsMatrixSliceWithRichTextPrimaryTilesItem>
+  >;
+}
+
+/**
+ * With Rich Text variation for ItemsMatrix Slice
+ *
+ * - **API ID**: `withRichText`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ItemsMatrixSliceWithRichText = prismic.SharedSliceVariation<
+  "withRichText",
+  Simplify<ItemsMatrixSliceWithRichTextPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *ItemsMatrix*
  */
-type ItemsMatrixSliceVariation = ItemsMatrixSliceDefault;
+type ItemsMatrixSliceVariation =
+  | ItemsMatrixSliceDefault
+  | ItemsMatrixSliceWithRichText;
 
 /**
  * ItemsMatrix Shared Slice
@@ -620,8 +707,11 @@ declare module "@prismicio/client" {
       ItemsMatrixSlice,
       ItemsMatrixSliceDefaultPrimaryTilesItem,
       ItemsMatrixSliceDefaultPrimary,
+      ItemsMatrixSliceWithRichTextPrimaryTilesItem,
+      ItemsMatrixSliceWithRichTextPrimary,
       ItemsMatrixSliceVariation,
       ItemsMatrixSliceDefault,
+      ItemsMatrixSliceWithRichText,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

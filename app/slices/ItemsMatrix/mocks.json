@@ -171,11 +171,491 @@
 				]
 			},
 			"heading": {
-				"__TYPE__": "FieldContent",
-				"type": "Text",
-				"value": "Naše flotila"
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading3",
+						"content": {
+							"text": "Používané FDM technologie",
+							"spans": [
+								{
+									"type": "strong",
+									"start": 0,
+									"end": 25
+								}
+							]
+						},
+						"direction": "ltr"
+					}
+				]
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "withRichText",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Materiály a jejich vlastnosti",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Přehled vybraných materiálů a povrchů používaných při 3D tisku.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"tiles": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"background",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1602248145578-9e5bc50c77b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxjYXJib24lMjBmaWJlcnxlbnwwfHx8fDE3Njc3MTAzODR8MA&ixlib=rb-4.1.0&q=85",
+									"alt": "silver aluminum case apple watch with black sport band",
+									"origin": {
+										"id": "2_P-B93fcPs",
+										"url": "https://images.unsplash.com/photo-1602248145578-9e5bc50c77b3?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxjYXJib24lMjBmaWJlcnxlbnwwfHx8fDE3Njc3MTAzODR8MA&ixlib=rb-4.1.0&q=85",
+										"width": 2696,
+										"height": 3671
+									},
+									"width": 2696,
+									"height": 3671,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"label",
+								{
+									"__TYPE__": "FieldContent",
+									"value": "fast",
+									"type": "Text"
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Carbon Fiber",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 12
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Maximální pevnost a tuhost při nízké hmotnosti",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Matný, lehce drsný povrch s technickým vzhledem",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vysoká mechanická odolnost a rozměrová stabilita",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vhodné pro namáhané funkční díly a konstrukční prvky",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Carbon Fiber",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 12
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Maximální pevnost a tuhost při nízké hmotnosti",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Matný, lehce drsný povrch s technickým vzhledem",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vysoká mechanická odolnost a rozměrová stabilita",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vhodné pro namáhané funkční díly a konstrukční prvky",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"background",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1693786229415-8c4b2260a925?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNXx8M2QlMjBwcmludHxlbnwwfHx8fDE3Njc3MTA0NDl8MA&ixlib=rb-4.1.0&q=85",
+									"alt": "a black and white photo of a small figurine",
+									"origin": {
+										"id": "WW359HyHwok",
+										"url": "https://images.unsplash.com/photo-1693786229415-8c4b2260a925?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxNXx8M2QlMjBwcmludHxlbnwwfHx8fDE3Njc3MTA0NDl8MA&ixlib=rb-4.1.0&q=85",
+										"width": 7956,
+										"height": 5300
+									},
+									"width": 7956,
+									"height": 5300,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "ASA",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 3
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Odolné technické díly pro vnitřní i venkovní použití",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Hladký, čistý povrch",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vysoká odolnost vůči UV záření a povětrnostním vlivům",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Stabilní materiál pro přesné technické aplikace",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "ASA",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 3
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Odolné technické díly pro vnitřní i venkovní použití",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Hladký, čistý povrch",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Vysoká odolnost vůči UV záření a povětrnostním vlivům",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Stabilní materiál pro přesné technické aplikace",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"background",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1643042945810-1119948eeabc?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxMHx8cnViYmVyfGVufDB8fHx8MTc2NzcxMDQ2OHww&ixlib=rb-4.1.0&q=85",
+									"alt": "a close up of a bunch of colorful rubber bands",
+									"origin": {
+										"id": "oaeyvk5USJY",
+										"url": "https://images.unsplash.com/photo-1643042945810-1119948eeabc?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxMHx8cnViYmVyfGVufDB8fHx8MTc2NzcxMDQ2OHww&ixlib=rb-4.1.0&q=85",
+										"width": 4896,
+										"height": 3264
+									},
+									"width": 4896,
+									"height": 3264,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Flexi",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 5
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Pružné a ohebné díly s vysokou životností",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Gumový vzhled a příjemná pružnost",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Odolnost proti opakovanému ohybu",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Ideální pro tlumení, kryty, těsnění a funkční prototypy",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							],
+							[
+								"popup_content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Flexi",
+												"spans": [
+													{
+														"type": "strong",
+														"start": 0,
+														"end": 5
+													}
+												]
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "heading5",
+											"content": {
+												"text": "Pružné a ohebné díly s vysokou životností",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Gumový vzhled a příjemná pružnost",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Odolnost proti opakovanému ohybu",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "list-item",
+											"content": {
+												"text": "Ideální pro tlumení, kryty, těsnění a funkční prototypy",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]
