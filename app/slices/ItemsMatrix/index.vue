@@ -193,6 +193,7 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
   flex: 1;
   overflow-y: scroll;
   text-align: left;
+  z-index: 120;
 }
 
 .card:hover {
@@ -295,6 +296,8 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
 
   padding: 64px;
   overflow-y: scroll;
+
+  text-align: left;
 }
 
 #sliderClose {

@@ -61,7 +61,22 @@ h5 {
 }
 
 h5 {
-  color: var(--gray-4);
+  color: var(--gray-6);
+  font-weight: normal;
+}
+
+p {
+  margin-block: 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.1rem;
+}
+
+/* Prismic Image */
+.block-img > img {
+  border-radius: calc(2 * var(--border-radius));
 }
 
 /* Form elements */
