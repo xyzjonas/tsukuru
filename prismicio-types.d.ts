@@ -448,7 +448,7 @@ export type RichTextSlice = prismic.SharedSlice<
  */
 export interface SimpleTextSectionSliceDefaultPrimary {
   /**
-   * text field in *SimpleTextSection → Default → Primary*
+   * Text field in *SimpleTextSection → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -456,6 +456,26 @@ export interface SimpleTextSectionSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   text: prismic.RichTextField;
+
+  /**
+   * Background field in *SimpleTextSection → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_text_section.default.primary.background
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  background: prismic.ImageField<never>;
+
+  /**
+   * Background Color field in *SimpleTextSection → Default → Primary*
+   *
+   * - **Field Type**: Color
+   * - **Placeholder**: *None*
+   * - **API ID Path**: simple_text_section.default.primary.background_color
+   * - **Documentation**: https://prismic.io/docs/fields/color
+   */
+  background_color: prismic.ColorField;
 }
 
 /**

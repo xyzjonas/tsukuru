@@ -7,12 +7,65 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
+						"type": "heading2",
+						"content": {
+							"text": "Technický 3D tisk funkčních dílů",
+							"spans": [
+								{
+									"type": "strong",
+									"start": 0,
+									"end": 32
+								}
+							]
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "heading5",
+						"content": {
+							"text": "Od kusové po sériovou výrobu",
+							"spans": [
+								{
+									"type": "strong",
+									"start": 0,
+									"end": 28
+								}
+							]
+						},
+						"direction": "ltr"
+					},
+					{
 						"type": "paragraph",
 						"content": {
-							"text": "Proident ea laboris pariatur adipisicing nulla proident id ea nostrud. Adipisicing duis mollit Lorem laboris mollit labore in tempor in voluptate. Reprehenderit minim esse aliquip officia ad ipsum Lorem qui deserunt."
-						}
+							"text": "Specializujeme se na výrobu funkčních dílů pomocí profesionálního 3D tisku s důrazem na kvalitu, materiály a technické použití.",
+							"spans": []
+						},
+						"direction": "ltr"
 					}
 				]
+			},
+			"background": {
+				"__TYPE__": "ImageContent",
+				"provider": "imgix",
+				"url": "https://images.unsplash.com/photo-1592659762303-90081d34b277?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxlbGVjdHJvbmljc3xlbnwwfHx8fDE3Njc3MDU4MDZ8MA&ixlib=rb-4.1.0&q=85",
+				"alt": "black and white computer keyboard",
+				"origin": {
+					"id": "pfR18JNEMv8",
+					"url": "https://images.unsplash.com/photo-1592659762303-90081d34b277?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHw3fHxlbGVjdHJvbmljc3xlbnwwfHx8fDE3Njc3MDU4MDZ8MA&ixlib=rb-4.1.0&q=85",
+					"width": 4000,
+					"height": 3003
+				},
+				"width": 4000,
+				"height": 3003,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"thumbnails": {}
 			}
 		},
 		"items": []
