@@ -85,6 +85,59 @@ defineProps(
         ...
       </div>
 
+      <div class="grid-2">
+        <span>
+          <label for="usage">Kde bude výtisk používaný ?</label>
+          <select id="usage" name="usage">
+            <option value="Venku">Venku</option>
+            <option value="Uvnitř">Uvnitř</option>
+            <option value="Součást stroje">Součást stroje</option>
+            <option value="Uvnitř i venku">Uvnitř i venku</option>
+          </select>
+        </span>
+
+        <!-- Kvalita / vzhled -->
+        <span>
+          <label for="quality">Kvalita / vzhled</label>
+          <select id="quality" name="quality">
+            <option value="1">
+              1 - Bude umístěno uvnitř stroje (nekladu důraz na kvalitu povrchu)
+            </option>
+            <option value="2">2 - Standardní kvalita povrchu</option>
+            <option value="3">3 - Potřebuji co nejlepší kvalitu povrchu</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="grid-2">
+        <!-- Pevnost -->
+        <span>
+          <label for="strength">Pevnost</label>
+          <select id="strength" name="strength">
+            <option value="1">1 - Bude pouze vystaveno (postavička)</option>
+            <option value="2">
+              2 - Bez většího namáhání (stojany, pomůcky)
+            </option>
+            <option value="3">
+              3 - Klasická manipulace (standardní pevnost)
+            </option>
+            <option value="4">4 - Vyšší pevnost</option>
+            <option value="5">
+              5 - Extra namáhané (ozubená kolečka apod.)
+            </option>
+          </select>
+        </span>
+
+        <!-- Doprava -->
+        <span>
+          <label for="shipping">Doprava</label>
+          <select id="shipping" name="shipping">
+            <option value="PPL">PPL - dodání na adresu 98,- Kč</option>
+            <option value="PPL box">PPL box / Parcelshop- 88,- Kč</option>
+          </select>
+        </span>
+      </div>
+
       <button type="submit">Odeslat</button>
     </form>
   </section>
