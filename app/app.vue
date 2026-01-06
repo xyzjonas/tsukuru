@@ -87,7 +87,7 @@ section {
 }
 
 section:nth-child(even) {
-  /* background-color: var(--dark-bg-color); */
+  background-color: var(--dark-bg-color);
 }
 
 section:nth-child(odd) {

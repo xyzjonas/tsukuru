@@ -84,6 +84,7 @@ export type NavDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<NavDocumentData>, "nav", Lang>;
 
 type PageDocumentDataSlicesSlice =
+  | TimelineSlice
   | FormSlice
   | CardsSlice
   | SimpleTextSectionSlice

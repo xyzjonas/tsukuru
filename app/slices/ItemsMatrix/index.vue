@@ -142,7 +142,7 @@ section {
   /* height: 14rem; */
   position: relative;
   flex: 1;
-  aspect-ratio: 0.9;
+  aspect-ratio: 0.8;
 
   /* max-width: 256px; */
   min-width: 250px;
@@ -199,6 +199,10 @@ section {
   .image-wrapper {
     margin: 12px;
   }
+
+  .card {
+    aspect-ratio: 0.7;
+  }
 }
 
 .image-wrapper > img {
@@ -223,6 +227,7 @@ section {
   font-weight: bold;
   text-align: center;
   margin-bottom: 12px;
+  margin-top: 1rem;
   text-overflow: 1px 1px black;
 }
 
@@ -285,5 +290,6 @@ button {
   padding-block: 6px;
   align-self: stretch;
   z-index: 250;
+  text-shadow: none;
 }
 </style>

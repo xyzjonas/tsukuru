@@ -15,10 +15,20 @@
 									"__TYPE__": "StructuredTextContent",
 									"value": [
 										{
+											"type": "heading1",
+											"content": {
+												"text": "1. Zabezpečený workflow",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
 											"type": "paragraph",
 											"content": {
-												"text": "In quis aliqua ad duis ipsum aute ea non est elit cillum dolor irure cupidatat elit."
-											}
+												"text": "In quis aliqua ad duis ipsum aute ea non est elit cillum dolor irure cupidatat elit.",
+												"spans": []
+											},
+											"direction": "ltr"
 										}
 									]
 								}
@@ -26,25 +36,139 @@
 							[
 								"image",
 								{
-									"__TYPE__": "ImageContent",
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxzZWN1cmV8ZW58MHx8fHwxNzY3Njg4OTk2fDA&ixlib=rb-4.1.0&q=85",
+									"alt": "a close up of a padlock on a door",
 									"origin": {
-										"id": "main",
-										"url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
-										"width": 3810,
-										"height": 5715
+										"id": "KrPulSdUetk",
+										"url": "https://images.unsplash.com/photo-1635602739175-bab409a6e94c?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwyfHxzZWN1cmV8ZW58MHx8fHwxNzY3Njg4OTk2fDA&ixlib=rb-4.1.0&q=85",
+										"width": 4648,
+										"height": 3079
 									},
-									"url": "https://images.unsplash.com/photo-1587614295999-6c1c13675117",
-									"width": 3810,
-									"height": 5715,
+									"width": 4648,
+									"height": 3079,
 									"edit": {
+										"background": "transparent",
 										"zoom": 1,
 										"crop": {
 											"x": 0,
 											"y": 0
-										},
-										"background": "transparent"
+										}
 									},
-									"alt": "breakfast",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading1",
+											"content": {
+												"text": "2. Modelování",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "In quis aliqua ad duis ipsum aute ea non est elit cillum dolor irure cupidatat elit.",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							],
+							[
+								"image",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1600869009498-8d429f88d4f5?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjYWR8ZW58MHx8fHwxNzY3Njg5MDA1fDA&ixlib=rb-4.1.0&q=85",
+									"alt": "black flat screen computer monitor",
+									"origin": {
+										"id": "SYo5eazBrls",
+										"url": "https://images.unsplash.com/photo-1600869009498-8d429f88d4f5?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHxjYWR8ZW58MHx8fHwxNzY3Njg5MDA1fDA&ixlib=rb-4.1.0&q=85",
+										"width": 6000,
+										"height": 4000
+									},
+									"width": 6000,
+									"height": 4000,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							]
+						]
+					},
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"content",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading1",
+											"content": {
+												"text": "3. Postup výroby",
+												"spans": []
+											},
+											"direction": "ltr"
+										},
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "In quis aliqua ad duis ipsum aute ea non est elit cillum dolor irure cupidatat elit.",
+												"spans": []
+											},
+											"direction": "ltr"
+										}
+									]
+								}
+							],
+							[
+								"image",
+								{
+									"provider": "imgix",
+									"url": "https://images.unsplash.com/photo-1642969164999-979483e21601?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHwzZCUyMHByaW50aW5nfGVufDB8fHx8MTc2NzY4OTAyMnww&ixlib=rb-4.1.0&q=85",
+									"alt": "a close up of a machine with a blue light on it",
+									"origin": {
+										"id": "NMCABEhN0RE",
+										"url": "https://images.unsplash.com/photo-1642969164999-979483e21601?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwxfHwzZCUyMHByaW50aW5nfGVufDB8fHx8MTc2NzY4OTAyMnww&ixlib=rb-4.1.0&q=85",
+										"width": 6240,
+										"height": 4160
+									},
+									"width": 6240,
+									"height": 4160,
+									"edit": {
+										"background": "transparent",
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										}
+									},
+									"credits": null,
+									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
 							]

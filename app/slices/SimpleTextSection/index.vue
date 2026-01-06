@@ -48,4 +48,8 @@ h2 {
     padding-inline: var(--size-4);
   }
 }
+
+.w-page {
+  width: 100%;
+}
 </style>
