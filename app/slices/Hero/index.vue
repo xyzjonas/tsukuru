@@ -23,7 +23,8 @@ defineProps(
       <PrismicImage class="logo" :field="slice.primary.logo" />
     </div>
     <div class="actions">
-      <a class="btn">{{ slice.primary.linktext }}</a>
+      <button>{{ slice.primary.linktext }}</button>
+      <!-- <a class="btn">{{ slice.primary.linktext }}</a> -->
       <p>{{ slice.primary.subtitle }}</p>
     </div>
   </section>
@@ -67,7 +68,7 @@ section::after {
 .actions p {
   color: white;
   margin-top: 1rem;
-  text-shadow: 1px 1px darkslategray;
+  text-shadow: 1px 1px var(--dark-bg-color);
 }
 
 .background {
@@ -105,34 +106,12 @@ section::after {
   }
 }
 
-.btn {
+button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  background-color: var(--brand-color);
+  /* background-color: var(--brand-color); */
   color: white;
-  text-decoration: none;
-  border-radius: 0.375rem;
-  font-weight: normal;
-  text-align: center;
-  transition: background-color 0.2s ease;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  user-select: none;
-}
-
-.btn:hover {
-  box-shadow: var(--shadow-3);
-  text-decoration: underline;
-}
-
-.btn:active {
-  background-color: var(--brand-color);
-  transform: translateY(1px);
-}
-
-.btn:focus {
-  outline: 2px solid #93c5fd;
-  outline-offset: 2px;
+  text-shadow: none;
 }
 </style>

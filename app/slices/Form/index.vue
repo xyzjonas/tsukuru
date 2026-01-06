@@ -93,9 +93,9 @@ form {
   flex-direction: column;
   gap: 1rem;
   padding: 2rem;
-  border: 1px solid var(--gray-10);
-  box-shadow: var(--shadow-5);
-  border-radius: 8px;
+  /* border: 1px solid var(--gray-10); */
+  /* box-shadow: var(--shadow-5); */
+  /* border-radius: 8px; */
 }
 button {
   color: white;

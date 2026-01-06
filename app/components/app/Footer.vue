@@ -26,7 +26,7 @@
 
 <style lang="css" scoped>
 section {
-  background-color: #101214;
+  background-color: black;
 }
 
 footer {

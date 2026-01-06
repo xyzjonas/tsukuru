@@ -20,9 +20,10 @@ defineProps(
     class="wrapper"
   >
     <div class="w-page">
-      <h2>{{ slice.primary.title }}</h2>
+      <PrismicRichText :field="slice.primary.text" />
+      <!-- <h2>{{ slice.primary.title }}</h2>
       <h5 v-if="slice.primary.subtitle">{{ slice.primary.subtitle }}</h5>
-      <PrismicText :field="slice.primary.body" />
+      <PrismicText :field="slice.primary.body" /> -->
     </div>
   </section>
 </template>
@@ -32,11 +33,16 @@ section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  text-align: center;
 }
 
-h2 {
+:deep(h2) {
   line-height: var(--font-lineheight-0);
   margin-bottom: 1rem;
+}
+
+:deep(p) {
+  margin-top: 1rem;
 }
 
 .wrapper {
@@ -51,5 +57,8 @@ h2 {
 
 .w-page {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

@@ -3,18 +3,13 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"title": {
-				"__TYPE__": "FieldContent",
-				"type": "Text",
-				"value": "Od digitálního návrhu po funkční součástku"
-			},
-			"body": {
+			"text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Culpa enim est reprehenderit labore labore eu et dolore id cillum duis cupidatat incididunt. Minim fugiat exercitation minim pariatur id esse cupidatat occaecat Lorem velit et amet anim officia. Fugiat aliquip occaecat occaecat nulla deserunt enim tempor Lorem excepteur dolor tempor."
+							"text": "Proident ea laboris pariatur adipisicing nulla proident id ea nostrud. Adipisicing duis mollit Lorem laboris mollit labore in tempor in voluptate. Reprehenderit minim esse aliquip officia ad ipsum Lorem qui deserunt."
 						}
 					}
 				]

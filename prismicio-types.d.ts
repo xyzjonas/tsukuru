@@ -448,34 +448,14 @@ export type RichTextSlice = prismic.SharedSlice<
  */
 export interface SimpleTextSectionSliceDefaultPrimary {
   /**
-   * Title field in *SimpleTextSection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_text_section.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  title: prismic.KeyTextField;
-
-  /**
-   * Subtitle field in *SimpleTextSection → Default → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: simple_text_section.default.primary.subtitle
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  subtitle: prismic.KeyTextField;
-
-  /**
-   * Body field in *SimpleTextSection → Default → Primary*
+   * text field in *SimpleTextSection → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: simple_text_section.default.primary.body
+   * - **API ID Path**: simple_text_section.default.primary.text
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  body: prismic.RichTextField;
+  text: prismic.RichTextField;
 }
 
 /**

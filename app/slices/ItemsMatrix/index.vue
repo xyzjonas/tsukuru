@@ -99,6 +99,16 @@ section {
   color: white;
 }
 
+.w-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+h3 {
+  align-self: center;
+}
+
 .wrapper {
   padding-inline: var(--size-8);
 }
@@ -148,7 +158,7 @@ section {
   min-width: 250px;
 
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow-3);
 
   z-index: 10;

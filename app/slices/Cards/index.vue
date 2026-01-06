@@ -36,11 +36,6 @@ defineProps(
 </template>
 
 <style lang="css" scoped>
-section {
-  color: white;
-  /* border-radius: 8px; */
-}
-
 .wrapper {
   padding-inline: var(--size-8);
 }
@@ -70,8 +65,9 @@ section {
 }
 
 .card {
-  border: 1px solid var(--gray-10);
-  border-radius: 8px;
+  background-color: var(--foreground-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 
   display: flex;
   flex-direction: column;
