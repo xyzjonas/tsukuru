@@ -249,6 +249,10 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
   .card {
     aspect-ratio: 0.7;
   }
+
+  .card-rich {
+    aspect-ratio: 0.35;
+  }
 }
 
 .image-wrapper > img,

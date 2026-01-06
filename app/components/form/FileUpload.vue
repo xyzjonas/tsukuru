@@ -87,7 +87,7 @@
         Clear All
       </button>
       <button @click="handleUpload" class="btn btn-primary" type="button">
-        Upload {{ files.length }} {{ files.length === 1 ? "File" : "Files" }}
+        Na {{ files.length }} {{ files.length === 1 ? "File" : "Files" }}
       </button>
     </div>
   </div>
