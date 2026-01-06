@@ -45,31 +45,12 @@ const onTileClose = () => {
           v-for="(tile, index) in slice.primary.tiles"
           :key="index"
           class="card"
-          @click="onTileClick(index)"
         >
-          <span class="expand">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <polyline points="9 21 3 21 3 15"></polyline>
-              <line x1="21" y1="3" x2="14" y2="10"></line>
-              <line x1="3" y1="21" x2="10" y2="14"></line>
-            </svg>
-            více
-          </span>
           <div class="image-wrapper">
             <PrismicImage :field="tile.background" />
           </div>
           <p>{{ tile.label }}</p>
+          <button aria-label="more" @click="onTileClick(index)">více</button>
         </div>
       </div>
       <div
@@ -78,7 +59,34 @@ const onTileClose = () => {
         @click="onTileClose"
       >
         <div v-if="selectedTile" class="sliderBody">
-          <div id="sliderClose" @click="onTileClose">⨉</div>
+          <button id="sliderClose" aria-label="close" @click="onTileClose">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <line
+                x1="6"
+                y1="6"
+                x2="18"
+                y2="18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+              <line
+                x1="18"
+                y1="6"
+                x2="6"
+                y2="18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
           <PrismicRichText :field="selectedTile.popup_content" />
         </div>
       </div>
@@ -107,7 +115,6 @@ section {
 
   overflow-x: auto;
   padding-block: 2rem;
-  margin-top: 1rem;
 
   /* 1. Enable momentum scrolling on iOS */
   -webkit-overflow-scrolling: touch;
@@ -138,7 +145,7 @@ section {
   aspect-ratio: 0.9;
 
   /* max-width: 256px; */
-  min-width: 196px;
+  min-width: 250px;
 
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -151,27 +158,10 @@ section {
   align-items: center;
   justify-content: end;
 
-  padding: 12px;
+  padding: 18px;
   transition: var(--transition);
 
   scroll-snap-align: center; /* Items "stick" to the center when scrolling stops */
-}
-
-.expand {
-  position: absolute;
-  top: 5px;
-  right: 12px;
-  font-size: small;
-  color: var(--gray-6);
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-items: center;
-}
-
-.expand > svg {
-  width: 12px;
 }
 
 .card:hover {
@@ -229,7 +219,7 @@ section {
 
 .card p {
   z-index: 10;
-  font-size: 13px;
+  font-size: small;
   font-weight: bold;
   text-align: center;
   margin-bottom: 12px;
@@ -252,11 +242,16 @@ section {
 
 #sliderClose {
   position: absolute;
-  top: -1rem;
-  right: -1rem;
+  top: -2rem;
+  right: -2rem;
   z-index: 125;
-  font-size: x-large;
+  font-size: large;
   cursor: pointer;
+
+  background-color: transparent;
+  padding: 8px;
+  outline: none;
+  aspect-ratio: 1;
 
   &:hover {
     font-weight: bold;
@@ -283,5 +278,12 @@ section {
   #slider.active {
     transform: translateX(0);
   }
+}
+
+button {
+  font-size: small;
+  padding-block: 6px;
+  align-self: stretch;
+  z-index: 250;
 }
 </style>

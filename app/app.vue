@@ -43,6 +43,7 @@ body {
   background-color: var(--dark-bg-color);
   /* #101214 */
   color: white;
+  font-family: "Poppins", sans-serif;
 }
 
 h1 {
@@ -81,13 +82,17 @@ section {
   padding: var(--size-8) 1rem;
 }
 
+section {
+  background-color: #212121;
+}
+
 section:nth-child(even) {
-  background-color: var(--dark-bg-color);
+  /* background-color: var(--dark-bg-color); */
 }
 
 section:nth-child(odd) {
   /* background: var(--light-bg-color); */
-  background-color: #212121;
+  /* background-color: #212121; */
 }
 
 #pageWrapper {

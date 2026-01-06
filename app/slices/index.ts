@@ -12,4 +12,5 @@ export const components = defineSliceZoneComponents({
   simple_text_section: defineAsyncComponent(
     () => import("./SimpleTextSection/index.vue"),
   ),
+  timeline: defineAsyncComponent(() => import("./Timeline/index.vue")),
 });

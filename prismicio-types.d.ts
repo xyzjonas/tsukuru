@@ -507,6 +507,76 @@ export type SimpleTextSectionSlice = prismic.SharedSlice<
   SimpleTextSectionSliceVariation
 >;
 
+/**
+ * Item in *Timeline → Default → Primary → steps*
+ */
+export interface TimelineSliceDefaultPrimaryStepsItem {
+  /**
+   * content field in *Timeline → Default → Primary → steps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.steps[].content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * image field in *Timeline → Default → Primary → steps*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.steps[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Timeline → Default → Primary*
+ */
+export interface TimelineSliceDefaultPrimary {
+  /**
+   * steps field in *Timeline → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.steps[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  steps: prismic.GroupField<Simplify<TimelineSliceDefaultPrimaryStepsItem>>;
+}
+
+/**
+ * Default variation for Timeline Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TimelineSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TimelineSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Timeline*
+ */
+type TimelineSliceVariation = TimelineSliceDefault;
+
+/**
+ * Timeline Shared Slice
+ *
+ * - **API ID**: `timeline`
+ * - **Description**: Timeline
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type TimelineSlice = prismic.SharedSlice<
+  "timeline",
+  TimelineSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -559,6 +629,11 @@ declare module "@prismicio/client" {
       SimpleTextSectionSliceDefaultPrimary,
       SimpleTextSectionSliceVariation,
       SimpleTextSectionSliceDefault,
+      TimelineSlice,
+      TimelineSliceDefaultPrimaryStepsItem,
+      TimelineSliceDefaultPrimary,
+      TimelineSliceVariation,
+      TimelineSliceDefault,
     };
   }
 }
