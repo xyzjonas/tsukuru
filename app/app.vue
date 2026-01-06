@@ -71,7 +71,7 @@ p {
 
 ul,
 ol {
-  padding-left: 1.1rem;
+  padding-left: 1.5rem;
 }
 
 /* Prismic Image */

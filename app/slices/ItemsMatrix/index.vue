@@ -191,7 +191,7 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
 
 .rich-body {
   flex: 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   text-align: left;
   z-index: 120;
 }
