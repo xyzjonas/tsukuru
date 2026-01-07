@@ -15,7 +15,23 @@ defineProps(
 
 <template>
   <section>
-    <form action="#" method="post" enctype="multipart/form-data" class="w-page">
+    <form
+      action="https://usebasin.com/f/845220db6cb4"
+      method="POST"
+      class="w-page"
+      enctype="multipart/form-data"
+      accept-charset="UTF-8"
+    >
+      <input
+        type="hidden"
+        name="access_key"
+        value="ddeba9414d754cc9bbede3bcea34bdf3"
+      />
+      <input
+        type="hidden"
+        name="subject"
+        value="TiskniLepe3d - Nová poptávka"
+      />
       <div class="rich-text">
         <PrismicRichText :field="slice.primary.heading" />
       </div>
@@ -34,7 +50,7 @@ defineProps(
         </span>
         <span>
           <label for="subject">Předmět *</label>
-          <input type="subject" id="email" name="email" required />
+          <input type="subject" id="subject" name="subject" required />
         </span>
       </div>
 
@@ -51,11 +67,11 @@ defineProps(
       </div>
 
       <div class="grid-1">
-        <label for="file-upload">Model nebo výkres (Max 25 MB)</label>
+        <label for="attachement">Model nebo výkres (Max 25 MB)</label>
         <input
-          id="file-upload"
+          id="attachement"
           type="file"
-          name="files[]"
+          name="attachement"
           multiple
           accept=".stl,.step,.stp,.obj,.3mf,.pdf,.jpg,.png,.zip"
         />
@@ -81,8 +97,6 @@ defineProps(
             <option value="Resin">Resin/SLA</option>
           </select>
         </span>
-
-        ...
       </div>
 
       <div class="grid-2">
@@ -155,6 +169,8 @@ form {
 button {
   color: white;
   background-color: var(--brand-color);
+  padding-block: 1rem;
+  margin-top: 1rem;
 }
 
 label {
@@ -165,6 +181,7 @@ span {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 span > input {
