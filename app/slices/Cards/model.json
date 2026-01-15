@@ -51,6 +51,15 @@
               }
             }
           }
+        },
+        "compact": {
+          "type": "Boolean",
+          "config": {
+            "label": "Compact",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
         }
       },
       "items": {}

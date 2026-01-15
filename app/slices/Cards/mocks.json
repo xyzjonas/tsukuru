@@ -171,6 +171,10 @@
 						"direction": "ltr"
 					}
 				]
+			},
+			"compact": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

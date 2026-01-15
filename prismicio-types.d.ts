@@ -190,6 +190,17 @@ export interface CardsSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   cards: prismic.GroupField<Simplify<CardsSliceDefaultPrimaryCardsItem>>;
+
+  /**
+   * Compact field in *Cards → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: cards.default.primary.compact
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  compact: prismic.BooleanField;
 }
 
 /**

@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.CardsSlice>([
     "slice",
     "index",
     "slices",
     "context",
   ])
+);
+
+const padding = computed(() =>
+  props.slice.primary.compact ? "0 var(--size-2)" : "var(--size-4)"
 );
 </script>
 
@@ -20,7 +24,7 @@ defineProps(
     class="wrapper"
   >
     <div class="w-page">
-      <div class="rich-text">
+      <div v-if="isFilled.richText(slice.primary.heading)" class="rich-text">
         <PrismicRichText :field="slice.primary.heading" />
       </div>
       <div class="cards">
@@ -31,7 +35,7 @@ defineProps(
         >
           <div class="title-row">
             <PrismicImage :field="card.icon" />
-            <h2>{{ card.title }}</h2>
+            <h2 v-if="card.title">{{ card.title }}</h2>
           </div>
           <p>{{ card.text }}</p>
         </div>
@@ -79,7 +83,7 @@ defineProps(
   gap: 1rem;
 
   box-shadow: var(--shadow-5);
-  padding: 2rem;
+  padding: v-bind(padding);
 }
 
 .title-row {

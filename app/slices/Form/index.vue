@@ -14,7 +14,10 @@ defineProps(
 </script>
 
 <template>
-  <section>
+  <section id="kontakt">
+    <div class="rich-text">
+      <PrismicRichText :field="slice.primary.heading" />
+    </div>
     <form
       action="https://usebasin.com/f/845220db6cb4"
       method="POST"
@@ -32,9 +35,7 @@ defineProps(
         name="subject"
         value="TiskniLepe3d - Nová poptávka"
       />
-      <div class="rich-text">
-        <PrismicRichText :field="slice.primary.heading" />
-      </div>
+
       <div class="grid-2">
         <span>
           <label for="name">Jméno *</label>
@@ -158,13 +159,23 @@ defineProps(
 </template>
 
 <style lang="css" scoped>
+section {
+  /* background-color: var(--brand-color); */
+  /* background-color: var(--foreground-color); */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* border: 1px solid var(--gray-10); */
-  /* box-shadow: var(--shadow-5); */
-  /* border-radius: 8px; */
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-5);
+  padding: 2rem;
+  background-color: var(--foreground-color);
+  border-radius: var(--border-radius);
 }
 button {
   color: white;
@@ -174,6 +185,7 @@ button {
 }
 
 label {
+  /* color: var(--dark-bg-color); */
   margin-right: 8px;
 }
 

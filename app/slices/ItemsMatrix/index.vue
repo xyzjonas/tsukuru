@@ -32,6 +32,33 @@ const onTileClose = () => {
 };
 
 const isRichVariant = computed(() => props.slice.variation === "withRichText");
+
+const tiles = ref<HTMLDivElement | null>(null);
+const isDown = ref(false);
+const startX = ref(0);
+const scrollLeft = ref(0);
+
+const startDrag = (e: MouseEvent) => {
+  if (!tiles.value) return;
+  isDown.value = true;
+  tiles.value.style.cursor = "grabbing";
+  startX.value = e.pageX - tiles.value.offsetLeft;
+  scrollLeft.value = tiles.value.scrollLeft;
+};
+
+const endDrag = () => {
+  if (!tiles.value) return;
+  isDown.value = false;
+  tiles.value.style.cursor = "grab";
+};
+
+const onDrag = (e: MouseEvent) => {
+  if (!isDown.value || !tiles.value) return;
+  e.preventDefault();
+  const x = e.pageX - tiles.value.offsetLeft;
+  const walk = (x - startX.value) * 2;
+  tiles.value.scrollLeft = scrollLeft.value - walk;
+};
 </script>
 
 <template>
@@ -44,7 +71,14 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
       <div class="rich-text">
         <PrismicRichText :field="slice.primary.heading" />
       </div>
-      <div class="tiles">
+      <div
+        ref="tiles"
+        class="tiles"
+        @mousedown="startDrag"
+        @mouseleave="endDrag"
+        @mouseup="endDrag"
+        @mousemove="onDrag"
+      >
         <div
           v-for="(tile, index) in slice.primary.tiles"
           :key="index"
@@ -137,24 +171,26 @@ const isRichVariant = computed(() => props.slice.variation === "withRichText");
   overflow-x: auto;
   padding-block: 2rem;
 
-  /* 1. Enable momentum scrolling on iOS */
-  -webkit-overflow-scrolling: touch;
-
-  /* 2. Snap points for that "native app" feel */
-  scroll-snap-type: x mandatory;
-
-  /* 3. Hide scrollbars (Standard) */
-  scrollbar-width: none;
-}
-
-/* Hide scrollbars (Chrome/Safari/Edge) */
-.tiles::-webkit-scrollbar {
-  display: none;
+  cursor: grab;
+  user-select: none;
 }
 
 @media screen and (max-width: 599px) {
   .tiles {
+    /* 1. Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+
+    /* 2. Snap points for that "native app" feel */
+    scroll-snap-type: x mandatory;
+
     justify-content: start;
+    /* 3. Hide scrollbars (Standard) */
+    scrollbar-width: none;
+  }
+
+  /* Hide scrollbars (Chrome/Safari/Edge) */
+  .tiles::-webkit-scrollbar {
+    display: none;
   }
 }
 
