@@ -1,6 +1,6 @@
 <template>
   <section>
-    <footer class="w-page">
+    <footer id="footer" class="w-page">
       <div class="group">
         <h5 id="goHome" href="/">
           Tiskni<span style="color: var(--brand-color)">Lepe3D</span>
@@ -36,6 +36,7 @@ footer {
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 4rem;
+  margin-block: 2rem;
 }
 
 .group {

@@ -1,10 +1,40 @@
 {
   "format": "custom",
   "id": "nav",
-  "label": "nav",
+  "label": "Navigation",
   "repeatable": false,
   "status": true,
   "json": {
-    "Main": {}
+    "Main": {
+      "tabs": {
+        "type": "Group",
+        "config": {
+          "label": "Tabs",
+          "repeat": true,
+          "fields": {
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            },
+            "highlighted": {
+              "type": "Boolean",
+              "config": {
+                "label": "Highlighted",
+                "placeholder_false": "false",
+                "placeholder_true": "true",
+                "default_value": false
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }

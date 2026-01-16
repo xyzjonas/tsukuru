@@ -128,10 +128,50 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-interface NavDocumentData {}
+/**
+ * Item in *Navigation → Tabs*
+ */
+export interface NavDocumentDataTabsItem {
+  /**
+   * Link field in *Navigation → Tabs*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.tabs[].link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
+   * Highlighted field in *Navigation → Tabs*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: nav.tabs[].highlighted
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  highlighted: prismic.BooleanField;
+}
 
 /**
- * nav document from Prismic
+ * Content for Navigation documents
+ */
+interface NavDocumentData {
+  /**
+   * Tabs field in *Navigation*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: nav.tabs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  tabs: prismic.GroupField<Simplify<NavDocumentDataTabsItem>>;
+}
+
+/**
+ * Navigation document from Prismic
  *
  * - **API ID**: `nav`
  * - **Repeatable**: `false`
@@ -796,6 +836,7 @@ declare module "@prismicio/client" {
       FooterDocumentDataColumnsItem,
       NavDocument,
       NavDocumentData,
+      NavDocumentDataTabsItem,
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,

@@ -12,17 +12,19 @@ const props = defineProps(
   ])
 );
 
-type HackyHacky = {
-  url: string;
-  text: string;
-};
+// type HackyHacky = {
+//   url: string;
+//   text: string;
+// };
 
-const linkUrl = computed(
-  () => (props.slice.primary.link satisfies unknown as HackyHacky).url
-);
-const linkText = computed(
-  () => (props.slice.primary.link satisfies unknown as HackyHacky).text
-);
+// const linkUrl = computed(
+//   () => (props.slice.primary.link satisfies unknown as HackyHacky).url
+// );
+// const linkText = computed(
+//   () => (props.slice.primary.link satisfies unknown as HackyHacky).text
+// );
+
+const { linkText, linkUrl } = useUsePrismicLink(props.slice.primary.link);
 </script>
 
 <template>
