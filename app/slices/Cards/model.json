@@ -12,6 +12,15 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "compact": {
+          "type": "Boolean",
+          "config": {
+            "label": "TextOnlyAndCentered",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "heading": {
           "type": "StructuredText",
           "config": {
@@ -59,15 +68,6 @@
                 }
               }
             }
-          }
-        },
-        "compact": {
-          "type": "Boolean",
-          "config": {
-            "label": "Compact",
-            "placeholder_false": "false",
-            "placeholder_true": "true",
-            "default_value": false
           }
         }
       },

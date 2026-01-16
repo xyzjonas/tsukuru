@@ -241,6 +241,17 @@ export interface CardsSliceDefaultPrimaryCardsItem {
  */
 export interface CardsSliceDefaultPrimary {
   /**
+   * TextOnlyAndCentered field in *Cards → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: cards.default.primary.compact
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  compact: prismic.BooleanField;
+
+  /**
    * Heading field in *Cards → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -259,17 +270,6 @@ export interface CardsSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
   cards: prismic.GroupField<Simplify<CardsSliceDefaultPrimaryCardsItem>>;
-
-  /**
-   * Compact field in *Cards → Default → Primary*
-   *
-   * - **Field Type**: Boolean
-   * - **Placeholder**: *None*
-   * - **Default Value**: false
-   * - **API ID Path**: cards.default.primary.compact
-   * - **Documentation**: https://prismic.io/docs/fields/boolean
-   */
-  compact: prismic.BooleanField;
 }
 
 /**
@@ -346,14 +346,14 @@ export type FormSlice = prismic.SharedSlice<"form", FormSliceVariation>;
  */
 export interface HeroSliceDefaultPrimary {
   /**
-   * LinkText field in *Hero → Default → Primary*
+   * Link field in *Hero → Default → Primary*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Link
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.default.primary.linktext
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **API ID Path**: hero.default.primary.link
+   * - **Documentation**: https://prismic.io/docs/fields/link
    */
-  linktext: prismic.KeyTextField;
+  link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
 
   /**
    * Subtitle field in *Hero → Default → Primary*

@@ -21,7 +21,7 @@ defineProps(
     <form
       action="https://usebasin.com/f/845220db6cb4"
       method="POST"
-      class="w-page"
+      class="w-page contact-form-gradient"
       enctype="multipart/form-data"
       accept-charset="UTF-8"
     >
@@ -160,23 +160,31 @@ defineProps(
 
 <style lang="css" scoped>
 section {
-  /* background-color: var(--brand-color); */
-  /* background-color: var(--foreground-color); */
+  /* background-color: #db7f2f7b; */
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  border-top: 1px solid rgba(219, 127, 47, 0.182);
+  border-bottom: 1px solid rgba(219, 127, 47, 0.182);
+  padding-block: 5rem;
+}
+
+:deep(h2) {
+  color: var(--brand-color);
 }
 
 form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--brand-color);
   box-shadow: var(--shadow-5);
-  padding: 2rem;
-  background-color: var(--foreground-color);
-  border-radius: var(--border-radius);
+  padding: 32px;
+  /* background-color: var(--foreground-color); */
+  border-radius: 10px;
+  animation: pulseGlowSubtle 2.5s ease-in-out infinite;
 }
+
 button {
   color: white;
   background-color: var(--brand-color);
@@ -265,5 +273,35 @@ input[type="file"] {
 .rich-text {
   text-align: center;
   align-self: center;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 20px rgba(219, 128, 47, 0.15),
+      0 0 40px rgba(219, 128, 47, 0.1),
+      inset 0 0 30px rgba(219, 128, 47, 0.05);
+    border-color: rgba(219, 128, 47, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(219, 128, 47, 0.3),
+      0 0 60px rgba(219, 128, 47, 0.2),
+      inset 0 0 40px rgba(219, 128, 47, 0.08);
+    border-color: rgba(219, 128, 47, 0.5);
+  }
+}
+
+@keyframes pulseGlowSubtle {
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(219, 128, 47, 0.1);
+    border-color: rgba(219, 128, 47, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(219, 128, 47, 0.2);
+    border-color: rgba(219, 128, 47, 0.35);
+  }
 }
 </style>

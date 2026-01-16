@@ -1,15 +1,27 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.HeroSlice>([
     "slice",
     "index",
     "slices",
     "context",
   ])
+);
+
+type HackyHacky = {
+  url: string;
+  text: string;
+};
+
+const linkUrl = computed(
+  () => (props.slice.primary.link satisfies unknown as HackyHacky).url
+);
+const linkText = computed(
+  () => (props.slice.primary.link satisfies unknown as HackyHacky).text
 );
 </script>
 
@@ -22,9 +34,10 @@ defineProps(
     <div class="logo">
       <PrismicImage class="logo" :field="slice.primary.logo" />
     </div>
-    <div class="actions">
-      <button>{{ slice.primary.linktext }}</button>
-      <!-- <a class="btn">{{ slice.primary.linktext }}</a> -->
+    <div v-if="isFilled.link(slice.primary.link)" class="actions">
+      <a :href="linkUrl">
+        <button>{{ linkText }}</button>
+      </a>
       <p>{{ slice.primary.subtitle }}</p>
     </div>
   </section>

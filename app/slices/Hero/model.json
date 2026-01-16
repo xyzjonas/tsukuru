@@ -12,11 +12,15 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "linktext": {
-          "type": "Text",
+        "link": {
+          "type": "Link",
           "config": {
-            "label": "LinkText",
-            "placeholder": ""
+            "label": "Link",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
           }
         },
         "subtitle": {
