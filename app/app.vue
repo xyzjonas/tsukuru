@@ -20,6 +20,7 @@
   --text-color: #e0e0e0;
   --light-bg-color: var(--surface-4);
   --dark-bg-color: #212529;
+  --background-color: #121212;
   --border-radius: 6px;
 
   /* --shadow-2: 0 0 0 3px hsl(0 0% 20%); */
@@ -27,7 +28,7 @@
 
   --transition: transform 0.2s ease;
 
-  background-color: #121212;
+  background-color: var(--background-color);
 
   font-family:
     system-ui,

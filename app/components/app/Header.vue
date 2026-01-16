@@ -1,41 +1,20 @@
 <template>
-  <!-- <nav>
-    <h1>
-      <a id="goHome" href="/"
-        >Tiskni<span style="color: var(--brand-color)">Lepe3D</span></a
-      >
-    </h1>
-    {{ route.fullPath }}
-    <div v-if="nav" class="links">
-      <span v-for="(link, index) in nav.data.tabs" :key="index">
-        <PrismicLink
-          :field="link.link"
-          :class="[
-            link.highlighted ? 'highlight' : '',
-            isActive(link) ? 'active' : '',
-          ]"
-        />
-      </span>
-    </div>
-  </nav> -->
-
   <nav>
     <div class="nav-container">
       <a id="goHome" href="/"
         >Tiskni<span style="color: var(--brand-color)">Lepe3D</span></a
       >
-
       <div
         id="hamburger"
         :class="['hamburger', menuToggle ? 'active' : '']"
         @click="menuToggle = !menuToggle"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span />
+        <span />
+        <span />
       </div>
 
-      <ul id="navMenu" :class="menuToggle ? 'active' : ''">
+      <ul v-if="nav" id="navMenu" :class="menuToggle ? 'active' : ''">
         <li
           v-for="(link, index) in nav.data.tabs"
           :key="index"
@@ -84,6 +63,7 @@ const menuToggle = ref(false);
 nav {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
+  z-index: 120;
   width: 100%;
 }
 
@@ -125,6 +105,7 @@ nav ul {
   display: flex;
   gap: 20px;
   padding-inline: 12px;
+  background-color: var(--background-color);
 }
 
 nav ul li {
