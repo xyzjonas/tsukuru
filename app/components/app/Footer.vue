@@ -6,27 +6,29 @@
           Tiskni<span style="color: var(--brand-color)">Lepe3D</span>
         </h5>
       </div>
-      <div class="group">
-        <h5>Provozovatel</h5>
-        <p>Jan Novák</p>
-        <p>Ulice č.p.</p>
-        <p>PSČ a město</p>
-        <p>IČO</p>
-      </div>
-      <div class="group">
-        <h5>Kontakt</h5>
-        <p>info@tisknilepe3d.cz</p>
-        <p>+420&nbsp;111&nbsp;111&nbsp;111</p>
+      <div
+        v-for="(col, index) in footer?.data.columns ?? []"
+        :key="index"
+        class="group"
+      >
+        <PrismicRichText :field="col.text" />
       </div>
     </footer>
   </section>
 </template>
 
-<script lang="ts" setup></script>
+<script setup lang="ts">
+const prismic = usePrismic();
+
+const { data: footer } = await useAsyncData("footer", () =>
+  prismic.client.getSingle("footer")
+);
+</script>
 
 <style lang="css" scoped>
 section {
   background-color: black;
+  color: #e0e0e0c3;
 }
 
 footer {
@@ -40,6 +42,11 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  flex: 1;
+}
+
+:deep(h5) {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 599px) {

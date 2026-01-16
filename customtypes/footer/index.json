@@ -1,0 +1,38 @@
+{
+  "format": "custom",
+  "id": "footer",
+  "label": "Footer",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logoleft": {
+        "type": "Boolean",
+        "config": {
+          "label": "FirstColumnLogo",
+          "placeholder_false": "false",
+          "placeholder_true": "true",
+          "default_value": true
+        }
+      },
+      "columns": {
+        "type": "Group",
+        "config": {
+          "label": "Columns",
+          "repeat": true,
+          "fields": {
+            "text": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Text",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -69,6 +69,65 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+/**
+ * Item in *Footer → Columns*
+ */
+export interface FooterDocumentDataColumnsItem {
+  /**
+   * Text field in *Footer → Columns*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.columns[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * FirstColumnLogo field in *Footer*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: true
+   * - **API ID Path**: footer.logoleft
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  logoleft: prismic.BooleanField;
+
+  /**
+   * Columns field in *Footer*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.columns[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  columns: prismic.GroupField<Simplify<FooterDocumentDataColumnsItem>>;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
 interface NavDocumentData {}
 
 /**
@@ -130,7 +189,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-export type AllDocumentTypes = NavDocument | PageDocument;
+export type AllDocumentTypes = FooterDocument | NavDocument | PageDocument;
 
 /**
  * Item in *Cards → Default → Primary → cards*
@@ -165,6 +224,16 @@ export interface CardsSliceDefaultPrimaryCardsItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   text: prismic.KeyTextField;
+
+  /**
+   * Body field in *Cards → Default → Primary → cards*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cards.default.primary.cards[].body
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  body: prismic.RichTextField;
 }
 
 /**
@@ -722,6 +791,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      FooterDocument,
+      FooterDocumentData,
+      FooterDocumentDataColumnsItem,
       NavDocument,
       NavDocumentData,
       PageDocument,

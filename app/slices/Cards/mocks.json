@@ -50,6 +50,20 @@
 									"type": "Text",
 									"value": "Při naší práci čerpáme z našich mnohaletých zkušeností. Přímo 3D tisku se věnujeme již více než 6 let. 3D tisk nás od začátku baví a snažíme se v něm neustále zlepšovat a hledat nové, efektivnější, modernější a úspornější cesty."
 								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Commodo voluptate est eu nisi elit. Cillum proident in ea sunt sunt proident Lorem reprehenderit culpa. Labore laborum quis Lorem nostrud sint."
+											}
+										}
+									]
+								}
 							]
 						]
 					},
@@ -98,6 +112,20 @@
 									"__TYPE__": "ImageContent",
 									"thumbnails": {}
 								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Sint deserunt culpa eiusmod nostrud aliquip consectetur non consequat aliquip sunt aliquip. Enim ea id nisi incididunt ipsum mollit cillum id fugiat."
+											}
+										}
+									]
+								}
 							]
 						]
 					},
@@ -145,6 +173,20 @@
 									"credits": null,
 									"__TYPE__": "ImageContent",
 									"thumbnails": {}
+								}
+							],
+							[
+								"body",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Adipisicing eiusmod cupidatat nulla tempor. Voluptate consequat qui nisi Lorem. Fugiat sit dolor elit magna aliqua ullamco."
+											}
+										}
+									]
 								}
 							]
 						]

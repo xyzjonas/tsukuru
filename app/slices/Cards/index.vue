@@ -31,13 +31,12 @@ const padding = computed(() =>
         <div
           v-for="(card, index) in slice.primary.cards"
           :key="index"
-          class="card"
+          :class="['card', isFilled.image(card.icon) ? '' : 'centered']"
         >
-          <div class="title-row">
-            <PrismicImage :field="card.icon" />
-            <h2 v-if="card.title">{{ card.title }}</h2>
+          <PrismicImage :field="card.icon" />
+          <div class="text">
+            <PrismicRichText :field="card.body" />
           </div>
-          <p>{{ card.text }}</p>
         </div>
       </div>
     </div>
@@ -81,20 +80,18 @@ const padding = computed(() =>
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
+  justify-content: start;
 
   box-shadow: var(--shadow-5);
   padding: v-bind(padding);
 }
 
-.title-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  gap: 1rem;
+.centered {
+  justify-content: center;
 }
 
-p {
+.text {
   text-align: center;
 }
 
@@ -103,7 +100,7 @@ h2 {
   text-align: center;
 }
 
-.title-row > img {
+.card > img {
   width: 128px;
   aspect-ratio: 1;
   object-fit: cover;

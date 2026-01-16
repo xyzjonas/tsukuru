@@ -202,7 +202,7 @@ const onDrag = (e: MouseEvent) => {
   aspect-ratio: 0.8;
 
   /* max-width: 256px; */
-  min-width: 250px;
+  min-width: 280px;
 
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
