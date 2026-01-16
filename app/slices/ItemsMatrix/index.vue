@@ -287,7 +287,7 @@ const onDrag = (e: MouseEvent) => {
   }
 
   .card-rich {
-    aspect-ratio: 0.35;
+    aspect-ratio: 0.5;
   }
 }
 
