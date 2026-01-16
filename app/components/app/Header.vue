@@ -104,7 +104,7 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
-  padding-inline: 12px;
+  padding: 12px;
   background-color: var(--background-color);
 }
 
