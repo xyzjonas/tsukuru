@@ -11,6 +11,51 @@ defineProps(
     "context",
   ])
 );
+
+const fileInput = ref<HTMLInputElement>();
+
+const files = ref<File[]>([]);
+const onChange = (e: unknown) => {
+  files.value = e.target.files;
+};
+
+function removeFile(idx: number) {
+  const dt = new DataTransfer();
+  Array.from(files.value).forEach((f, i) => {
+    if (i !== idx) dt.items.add(f);
+  });
+  fileInput.value.files = dt.files;
+  onChange({ target: fileInput.value });
+}
+
+function formatSize(bytes: number) {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+}
+
+const dropZone = ref();
+// dropZone.addEventListener('click', () => input.click());
+
+const dragover = (e) => {
+  e.preventDefault();
+  dropZone.value.classList.add("dragover");
+};
+
+const dragleave = () => {
+  dropZone.value.classList.remove("dragover");
+};
+
+const drop = (e: Event) => {
+  e.preventDefault();
+  dropZone.value.classList.remove("dragover");
+  const dt = new DataTransfer();
+  Array.from(e.dataTransfer.files).forEach((f) => dt.items.add(f));
+  fileInput.value.files = e.dataTransfer.files;
+  onChange({ target: fileInput.value });
+};
 </script>
 
 <template>
@@ -67,7 +112,7 @@ defineProps(
         </span>
       </div>
 
-      <div class="grid-1">
+      <!-- <div class="grid-1">
         <label for="attachement">Model nebo výkres (Max 25 MB)</label>
         <input
           id="attachement"
@@ -76,6 +121,89 @@ defineProps(
           multiple
           accept=".stl,.step,.stp,.obj,.3mf,.pdf,.jpg,.png,.zip"
         />
+      </div> -->
+      <div>
+        <!-- <label for="attachement">Model nebo výkres (Max 25 MB)</label> -->
+        <div class="file-upload-wrapper">
+          <input
+            id="attachement"
+            ref="fileInput"
+            type="file"
+            name="attachement"
+            multiple
+            accept=".stl,.step,.stp,.obj,.3mf,.pdf,.jpg,.png,.zip"
+            @change="onChange"
+          />
+          <div
+            class="file-upload-area"
+            for="attachement"
+            @dragover.prevent="dragover"
+            @dragleave="dragleave"
+            @drop.prevent="drop"
+          >
+            <label ref="dropZone" for="attachement">
+              <div class="upload-icon">
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"
+                  />
+                </svg>
+              </div>
+              <div class="upload-text">
+                Klikněte pro nahrání nebo přetáhněte soubory
+              </div>
+              <div class="upload-hint">Můžete nahrát více souborů najednou</div>
+              <div class="upload-formats">
+                STL, STEP, STP, OBJ, 3MF, PDF, JPG, PNG, ZIP
+              </div>
+            </label>
+          </div>
+        </div>
+        <div v-if="fileInput" class="file-list">
+          <div
+            v-for="(file, index) in files"
+            :key="file.name"
+            class="file-item"
+          >
+            <div class="file-icon">
+              {{
+                file.name.split(".").length >= 2
+                  ? (file.name.split(".").pop()?.toLowerCase() ?? "?")
+                  : "?"
+              }}
+            </div>
+            <div class="file-info">
+              <div class="file-name">{{ file.name }}</div>
+              <div class="file-size">{{ formatSize(file.size) }}</div>
+              <div v-if="file.size > 25000000" class="file-error">
+                Soubor je příliš velký (max 25 MB)
+              </div>
+            </div>
+            <button
+              type="button"
+              class="file-remove"
+              @click="removeFile(index)"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div class="grid-2">
@@ -174,12 +302,14 @@ section {
 }
 
 form {
+  overflow-x: scroll;
+  /* max-width: 12px; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
   border: 1px solid var(--brand-color);
   box-shadow: var(--shadow-5);
-  padding: 32px;
+  padding: 18px;
   /* background-color: var(--foreground-color); */
   border-radius: 10px;
   animation: pulseGlowSubtle 2.5s ease-in-out infinite;
@@ -245,25 +375,25 @@ fieldset {
 }
 
 /* Style the file input button (webkit browsers) */
-input[type="file"]::file-selector-button {
+/* input[type="file"]::file-selector-button {
   background-color: var(--dark-bg-color);
   color: white;
-}
-
+} */
+/*
 input[type="file"]::file-selector-button:hover {
   background-color: var(--dark-bg-color);
-}
+} */
 
 /* Firefox */
-input[type="file"]::file-selector-button {
+/* input[type="file"]::file-selector-button {
   background-color: var(--dark-bg-color);
   color: white;
-}
+} */
 
 /* Force color scheme on the input itself */
-input[type="file"] {
+/* input[type="file"] {
   color-scheme: dark;
-}
+} */
 
 .w-page {
   display: flex;
@@ -303,5 +433,146 @@ input[type="file"] {
     box-shadow: 0 0 25px rgba(219, 128, 47, 0.2);
     border-color: rgba(219, 128, 47, 0.35);
   }
+}
+
+/** CUSTOM FILE INPUT */
+
+input[type="file"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.file-upload-area {
+  border: 1px dashed var(--border-color);
+  border-radius: 12px;
+  text-align: center;
+  background: var(--foreground-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+
+.file-upload-area:hover {
+  border-color: var(--gray-7);
+  /* background: var(--gray-10); */
+}
+
+.file-upload-area.dragover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  transform: scale(1.02);
+}
+
+.upload-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--gray-9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-color);
+}
+
+.upload-text {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.upload-hint {
+  font-size: small;
+  color: var(--text-color);
+}
+
+.upload-formats {
+  font-size: x-small;
+  color: var(--gray-6);
+  margin-top: 8px;
+}
+
+.file-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--foreground-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover {
+  border-color: var(--gray-7);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-size: smaller;
+  color: var(--text-color);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-size {
+  font-size: 12px;
+  color: var(--gray-6);
+  margin-top: 2px;
+}
+
+.file-remove {
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-top: 0;
+  padding: 4px;
+  text-shadow: none;
+}
+
+.file-remove:hover {
+  background: var(--gray-8);
+}
+
+.file-error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
 }
 </style>

@@ -19,6 +19,7 @@
           v-for="(link, index) in nav.data.tabs"
           :key="index"
           :class="[isActive(link.link) ? 'active' : '']"
+          @click="menuToggle = !menuToggle"
         >
           <!-- <a href="#home" class="active">Home</a> -->
           <PrismicLink
@@ -191,98 +192,3 @@ ul li.active a::after {
   }
 }
 </style>
-<!-- 
-<style lang="css" scoped>
-nav {
-  padding: 12px;
-  display: flex;
-  gap: 8px;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  flex-wrap: wrap;
-}
-
-.links {
-  align-items: center;
-  display: flex;
-  gap: 1.5rem;
-  flex: 1;
-  min-width: 312px;
-  justify-content: end;
-}
-
-a .router-link-active {
-  color: red;
-}
-
-.links a {
-  display: inline-block;
-  padding: 20px 10px;
-  text-decoration: none;
-  color: var(--text-color);
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s ease;
-  text-transform: capitalize;
-}
-
-.links a::after {
-  content: "";
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--brand-color);
-  transition:
-    width 0.2s ease,
-    left 0.2s ease;
-}
-
-.links a:hover {
-  color: var(--brand-color);
-}
-
-.links a:hover::after {
-  width: 100%;
-  left: 0;
-}
-
-.links a.active::after {
-  width: 100%;
-  left: 0;
-}
-
-#goHome {
-  color: white;
-  display: flex;
-  flex-wrap: nowrap;
-  min-width: 200px;
-}
-
-h1 {
-  font-size: large;
-  margin: 0;
-}
-
-.link {
-  font-size: small;
-  color: white;
-  text-transform: uppercase;
-}
-
-.highlight {
-  text-align: center;
-  font-weight: bold;
-  border: 1px solid var(--border-color);
-  padding: 5px 10px;
-  border-radius: 3px;
-}
-
-@media screen and (max-width: 599px) {
-  .highlight {
-    margin-left: auto;
-  }
-}
-</style> -->

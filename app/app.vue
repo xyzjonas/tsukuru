@@ -86,7 +86,7 @@ textarea,
 select {
   background: #1a1a1a;
   color: inherit;
-  border: 1px solid #333;
+  border: 1px solid var(--border-color);
   font: inherit;
 }
 
@@ -108,7 +108,8 @@ section {
   /* flex-direction: column; */
   /* align-items: center; */
   /* gap: var(--size-5); */
-  padding: var(--size-7) 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 /* 
 section {
