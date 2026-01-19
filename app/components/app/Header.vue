@@ -6,27 +6,28 @@
       >
       <div
         id="hamburger"
-        :class="['hamburger', menuToggle ? 'active' : '']"
-        @click="menuToggle = !menuToggle"
+        ref="hamburger"
+        :class="['hamburger']"
+        @click="toggleMenu"
       >
         <span />
         <span />
         <span />
       </div>
 
-      <ul v-if="nav" id="navMenu" :class="menuToggle ? 'active' : ''">
+      <ul v-if="nav" id="navMenu" ref="navMenu">
         <li
           v-for="(link, index) in nav.data.tabs"
           :key="index"
           :class="[isActive(link.link) ? 'active' : '']"
-          @click="menuToggle = !menuToggle"
+          @click="toggleMenu"
         >
           <!-- <a href="#home" class="active">Home</a> -->
           <PrismicLink
             :field="link.link"
             :class="[
               link.highlighted ? 'highlight' : '',
-              isActive(link) ? 'active' : '',
+              isActive(link.link) ? 'active' : '',
             ]"
           />
         </li>
@@ -37,19 +38,21 @@
 
 <script setup lang="ts">
 const prismic = usePrismic();
-const route = useRoute();
 const { data: nav } = await useAsyncData("nav", () =>
   prismic.client.getSingle("nav")
 );
 
 const isActive = (item: unknown) => {
   const link = prismicLink(item).url;
-  console.info(item);
-  console.info(`${link} x ${route.fullPath}`);
-  return link === route.fullPath;
+  return link === location?.pathname;
 };
 
-const menuToggle = ref(false);
+const hamburger = ref<HTMLElement>();
+const navMenu = ref<HTMLDivElement>();
+const toggleMenu = () => {
+  hamburger.value?.classList.toggle("active");
+  navMenu.value?.classList.toggle("active");
+};
 </script>
 
 <style scoped lang="css">
@@ -66,6 +69,7 @@ nav {
   position: relative;
   z-index: 120;
   width: 100%;
+  padding-inline: 4px;
 }
 
 .nav-container {
@@ -105,13 +109,14 @@ nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
-  padding: 12px;
+  padding: 0;
   background-color: var(--background-color);
 }
 
 nav ul li {
   max-inline-size: none;
   padding: 0;
+  margin: 0;
 }
 
 ul a {
