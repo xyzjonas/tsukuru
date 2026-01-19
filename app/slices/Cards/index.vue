@@ -33,7 +33,7 @@ const padding = computed(() =>
           :key="index"
           :class="['card', isFilled.image(card.icon) ? '' : 'centered']"
         >
-          <PrismicImage :field="card.icon" />
+          <PrismicImage :field="card.icon" :widths="[64, 128, 256]" />
           <div class="text">
             <PrismicRichText :field="card.body" />
           </div>
