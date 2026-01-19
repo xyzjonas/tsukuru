@@ -446,7 +446,7 @@ input[type="file"] {
 
 .file-upload-area {
   border: 1px dashed var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   text-align: center;
   background: var(--foreground-color);
   cursor: pointer;
