@@ -302,8 +302,6 @@ section {
 }
 
 form {
-  overflow-x: scroll;
-  /* max-width: 12px; */
   display: flex;
   flex-direction: column;
   gap: 1rem;
