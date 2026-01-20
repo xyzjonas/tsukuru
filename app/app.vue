@@ -109,6 +109,7 @@ section {
   /* align-items: center; */
   /* gap: var(--size-5); */
   padding: 1rem;
+  padding-block: 2rem;
   box-sizing: border-box;
 }
 /* 

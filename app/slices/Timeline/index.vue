@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -16,7 +16,7 @@ defineProps(
 <template>
   <section>
     <div class="w-page">
-      <div class="rich-text">
+      <div v-if="isFilled.richText(slice.primary.heading)" class="rich-text">
         <PrismicRichText :field="slice.primary.heading" />
       </div>
       <div class="timeline">
