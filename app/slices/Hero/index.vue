@@ -12,19 +12,17 @@ const props = defineProps(
   ])
 );
 
-// type HackyHacky = {
-//   url: string;
-//   text: string;
-// };
-
-// const linkUrl = computed(
-//   () => (props.slice.primary.link satisfies unknown as HackyHacky).url
-// );
-// const linkText = computed(
-//   () => (props.slice.primary.link satisfies unknown as HackyHacky).text
-// );
-
 const { linkText, linkUrl } = useUsePrismicLink(props.slice.primary.link);
+
+let height = "40rem";
+let heightXs = "40rem";
+if (props.slice.primary.height === "medium") {
+  height = "30rem";
+  heightXs = "20rem";
+} else if (props.slice.primary.height === "small") {
+  height = "20rem";
+  heightXs = "10rem";
+}
 </script>
 
 <template>
@@ -48,7 +46,7 @@ const { linkText, linkUrl } = useUsePrismicLink(props.slice.primary.link);
 <style lang="css" scoped>
 section {
   width: 100%;
-  height: 40rem;
+  height: v-bind("height");
   display: flex;
   flex-direction: column;
   position: relative;
@@ -59,6 +57,12 @@ section {
   /* align-content: center; */
 
   z-index: 0;
+}
+
+@media screen and (max-width: 599px) {
+  section {
+    height: v-bind("heightXs");
+  }
 }
 
 section::after {

@@ -65,6 +65,11 @@
 					"target": "_blank",
 					"text": "Google"
 				}
+			},
+			"height": {
+				"__TYPE__": "FieldContent",
+				"value": "medium",
+				"type": "Select"
 			}
 		},
 		"items": []

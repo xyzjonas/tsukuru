@@ -45,6 +45,18 @@
             "constraint": {},
             "thumbnails": []
           }
+        },
+        "height": {
+          "type": "Select",
+          "config": {
+            "label": "Height",
+            "placeholder": "Fixed height of the 'Hero' section",
+            "options": [
+              "large",
+              "small",
+              "medium"
+            ]
+          }
         }
       },
       "items": {}

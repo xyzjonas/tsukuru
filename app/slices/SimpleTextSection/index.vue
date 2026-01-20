@@ -68,7 +68,6 @@ section {
 
 :deep(p) {
   margin-top: 1rem;
-  /* background-color: red; */
 }
 
 .wrapper {

@@ -445,6 +445,16 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/image
    */
   logo: prismic.ImageField<never>;
+
+  /**
+   * Height field in *Hero → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Fixed height of the 'Hero' section
+   * - **API ID Path**: hero.default.primary.height
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  height: prismic.SelectField<"large" | "small" | "medium">;
 }
 
 /**
