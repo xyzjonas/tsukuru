@@ -44,14 +44,6 @@
 								}
 							],
 							[
-								"text",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Text",
-									"value": "Při naší práci čerpáme z našich mnohaletých zkušeností. Přímo 3D tisku se věnujeme již více než 6 let. 3D tisk nás od začátku baví a snažíme se v něm neustále zlepšovat a hledat nové, efektivnější, modernější a úspornější cesty."
-								}
-							],
-							[
 								"body",
 								{
 									"__TYPE__": "StructuredTextContent",
@@ -76,14 +68,6 @@
 									"__TYPE__": "FieldContent",
 									"type": "Text",
 									"value": "Variabilita"
-								}
-							],
-							[
-								"text",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Text",
-									"value": "3D tisk na zakázku zpracováváme pro firmy i jednotlivce. Dokážeme vytisknout předměty od nejmenších součástek až po objekty v životní velikosti. Bez kompromisů na kvalitě. Za dobu svého působení v 3D tisku jsme tiskli z nejrůznějších druhů materiálů a zvládli všelijaké tvary a složitosti. Umíme malosériovou výrobu i tisk jednotlivých kusů na míru."
 								}
 							],
 							[
@@ -138,14 +122,6 @@
 									"__TYPE__": "FieldContent",
 									"type": "Text",
 									"value": "Rychlost"
-								}
-							],
-							[
-								"text",
-								{
-									"__TYPE__": "FieldContent",
-									"type": "Text",
-									"value": "Rychlost výroby a doručení je pro nás prioritou. Průměrná doba od objednávky po doručení se pohybuje okolo 72 hodin. Menší zakázky dokážeme doručit již do 24 hodin. Výrobky si můžete vyzvednout osobně nebo vám je doručíme na adresu."
 								}
 							],
 							[

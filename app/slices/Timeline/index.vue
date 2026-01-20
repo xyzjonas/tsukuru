@@ -14,18 +14,23 @@ defineProps(
 </script>
 
 <template>
-  <section class="timeline-container">
-    <div class="timeline">
-      <div
-        v-for="(item, index) in slice.primary.steps"
-        :key="index"
-        class="item"
-      >
-        <div class="card-image">
-          <PrismicImage :field="item.image" />
-        </div>
-        <div class="card-content">
-          <PrismicRichText :field="item.content" />
+  <section>
+    <div class="w-page">
+      <div class="rich-text">
+        <PrismicRichText :field="slice.primary.heading" />
+      </div>
+      <div class="timeline">
+        <div
+          v-for="(item, index) in slice.primary.steps"
+          :key="index"
+          class="item"
+        >
+          <div class="card-image">
+            <PrismicImage :field="item.image" />
+          </div>
+          <div class="card-content">
+            <PrismicRichText :field="item.content" />
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +38,17 @@ defineProps(
 </template>
 
 <style lang="css" scoped>
+.w-page {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.rich-text {
+  align-self: center;
+  margin-bottom: 2rem;
+}
+
 .timeline {
   display: flex;
   flex-direction: column;

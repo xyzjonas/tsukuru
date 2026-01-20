@@ -214,7 +214,38 @@ interface PageDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/slices
    */
-  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>;
+  slices: prismic.SliceZone<PageDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.meta_title
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  meta_title: prismic.RichTextField;
+
+  /**
+   * Meta Description field in *Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.meta_description
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page.meta_image
+   * - **Tab**: SEO
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -254,16 +285,6 @@ export interface CardsSliceDefaultPrimaryCardsItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   title: prismic.KeyTextField;
-
-  /**
-   * Text field in *Cards → Default → Primary → cards*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: cards.default.primary.cards[].text
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */
-  text: prismic.KeyTextField;
 
   /**
    * Body field in *Cards → Default → Primary → cards*
@@ -769,6 +790,16 @@ export interface TimelineSliceDefaultPrimaryStepsItem {
  * Primary content in *Timeline → Default → Primary*
  */
 export interface TimelineSliceDefaultPrimary {
+  /**
+   * Heading field in *Timeline → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: timeline.default.primary.heading
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  heading: prismic.RichTextField;
+
   /**
    * steps field in *Timeline → Default → Primary*
    *

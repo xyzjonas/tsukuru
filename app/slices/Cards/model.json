@@ -51,13 +51,6 @@
                   "placeholder": ""
                 }
               },
-              "text": {
-                "type": "Text",
-                "config": {
-                  "label": "Text",
-                  "placeholder": ""
-                }
-              },
               "body": {
                 "type": "StructuredText",
                 "config": {

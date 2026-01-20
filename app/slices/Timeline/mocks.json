@@ -175,6 +175,27 @@
 						]
 					}
 				]
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Sunt elit elit eiusmod",
+							"spans": []
+						},
+						"direction": "ltr"
+					},
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "ullamco elit. Excepteur quis tempor amet id id cupidatat ad cupidatat sint. Excepteur tempor sunt mollit laboris consequat tempor quis.",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
 			}
 		},
 		"items": []
