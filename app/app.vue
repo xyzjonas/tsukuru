@@ -61,6 +61,16 @@ h5 {
   margin-bottom: 1rem;
 }
 
+@media screen and (max-width: 599px) {
+  h1 {
+    font-size: var(--font-size-6);
+  }
+
+  h2 {
+    font-size: var(--font-size-5);
+  }
+}
+
 h5 {
   color: var(--gray-6);
   font-weight: normal;
