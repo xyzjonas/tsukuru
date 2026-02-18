@@ -21,9 +21,21 @@
             <img
               src="@/assets/whatsapp.png"
               alt="whatsapp"
-              style="width: 24px"
+              style="width: 22px"
             />
             +420 728 917 391
+          </a>
+          <a
+            href="https://www.instagram.com/tisknilepe3d?igsh=anBsY253OGs2NDFt"
+            target="_blank"
+            class="ig"
+          >
+            <img
+              src="@/assets/instagram.svg"
+              alt="instagram"
+              style="width: 22px"
+            />
+            tisknilepe3d
           </a>
         </div>
       </div>
@@ -76,6 +88,13 @@ footer {
   display: flex;
   gap: 0.5rem;
   color: #008e4b;
+}
+
+.ig {
+  display: flex;
+  gap: 0.5rem;
+  color: #b24787;
+  margin-top: 12px;
 }
 
 .whatsapp:hover {
