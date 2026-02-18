@@ -6,6 +6,18 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+useHead({
+  meta: [
+    {
+      name: "google-site-verification",
+      content: "Qf1v7b1GG_WaVsaAaLIhK4R1FnLB5kspX2BcPTnEwz0",
+    },
+  ],
+  script: [],
+});
+</script>
+
 <style lang="css">
 @import "open-props/style";
 

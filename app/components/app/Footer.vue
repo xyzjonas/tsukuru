@@ -12,6 +12,20 @@
         class="group"
       >
         <PrismicRichText :field="col.text" />
+        <div v-if="JSON.stringify(col.text).includes('Kontakt')">
+          <a
+            href="https://wa.me/message/3BPT4ZA7CMRTD1"
+            target="_blank"
+            class="whatsapp"
+          >
+            <img
+              src="@/assets/whatsapp.png"
+              alt="whatsapp"
+              style="width: 24px"
+            />
+            +420 728 917 391
+          </a>
+        </div>
       </div>
     </footer>
   </section>
@@ -56,5 +70,15 @@ footer {
     align-items: center;
     text-align: center;
   }
+}
+
+.whatsapp {
+  display: flex;
+  gap: 0.5rem;
+  color: #008e4b;
+}
+
+.whatsapp:hover {
+  text-decoration: underline;
 }
 </style>

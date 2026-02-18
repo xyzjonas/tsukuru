@@ -3,11 +3,10 @@ import { repositoryName, apiEndpoint } from "./slicemachine.config.json";
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
   app: {
     head: {
-      title: "Prismic + Nuxt Minimal Starter",
-      htmlAttrs: { lang: "en" },
+      title: "TiskniLepe3D",
+      htmlAttrs: { lang: "cs" },
       meta: [{ charset: "utf-8" }],
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
@@ -16,6 +15,14 @@ export default defineNuxtConfig({
   css: ["~/assets/css/fonts.css"],
 
   modules: ["@nuxt/eslint", "@nuxtjs/prismic"],
+
+  scripts: {
+    registry: {
+      googleAnalytics: {
+        id: "G-XTE4079ZX7",
+      },
+    },
+  },
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,
@@ -35,6 +42,5 @@ export default defineNuxtConfig({
       ],
     },
   },
-
   compatibilityDate: "2025-07-16",
 });
